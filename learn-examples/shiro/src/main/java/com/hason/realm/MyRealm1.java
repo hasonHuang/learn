@@ -10,10 +10,10 @@ import org.apache.shiro.realm.Realm;
  * @since 2.0
  * @date 2017/7/5
  */
-public class MyRealm implements Realm {
+public class MyRealm1 implements Realm {
     @Override
     public String getName() {
-        return "myrealm";   // 返回一个唯一的 realm 的名字
+        return "myRealm1";   // 返回一个唯一的 realm 的名字
     }
 
     @Override
