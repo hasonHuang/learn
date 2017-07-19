@@ -24,11 +24,11 @@ import org.junit.Test;
  * @since 2.0
  * @date 2017/7/13
  */
-public class AuthorizerTest extends BaseTest {
+public class AuthorizerTestShiro extends ShiroBaseTest {
 
     @Test
     public void testIsPermitted() {
-        login("classpath:shiro-authorizer.ini", "hason", "123");
+        login("classpath:chapter1-3/shiro-authorizer.ini", "hason", "123");
         //判断拥有权限：user:create
         Assert.assertTrue(subject().isPermitted("user1:update"));
         Assert.assertTrue(subject().isPermitted("user2:update"));
@@ -48,7 +48,7 @@ public class AuthorizerTest extends BaseTest {
     //    为 true 来开启权限查询。
     @Test
     public void testIsPermitted2() {
-        login("classpath:shiro-jdbc-authorizer.ini", "hason", "123");
+        login("classpath:chapter1-3/shiro-jdbc-authorizer.ini", "hason", "123");
         //判断拥有权限：user:create
         Assert.assertTrue(subject().isPermitted("user1:update"));
         Assert.assertTrue(subject().isPermitted("user2:update"));

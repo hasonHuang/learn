@@ -33,7 +33,7 @@ public class PermissionTest {
     // 没有提供如 isPermittedAny 用于判断拥有某一个权限的接口。
     @Test
     public void testIsPermission() {
-        login("classpath:shiro-permission.ini", "hason", "123");
+        login("classpath:chapter1-3/shiro-permission.ini", "hason", "123");
         //判断拥有权限：user:create
         Assert.assertTrue("没有权限 user:create", subject().isPermitted("user:create"));
         //判断拥有权限：user:update and user:delete
@@ -48,7 +48,7 @@ public class PermissionTest {
     // 不能使用“非通配符规则”去匹配 “通配符”权限，如果通配符规则包含通配符权限所需的权限，可以通过检验
     @Test
     public void testWildcardPermission() {
-        login("classpath:shiro-permission.ini", "karen", "123");
+        login("classpath:chapter1-3/shiro-permission.ini", "karen", "123");
         // 判断拥有权限：user:update && user:create
         subject().checkPermissions("user:update,create");
         // 判断拥有权限：user:update && user:create
@@ -60,7 +60,7 @@ public class PermissionTest {
 
     @Test(expected = UnauthorizedException.class)
     public void testCheckPermission() {
-        login("classpath:shiro-permission.ini", "wang", "123");
+        login("classpath:chapter1-3/shiro-permission.ini", "wang", "123");
         //断言拥有权限：user:create
         subject().checkPermission("user:create");
         //断言拥有权限：user:delete and user:update

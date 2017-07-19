@@ -1,43 +1,43 @@
 package com.hason;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.config.IniSecurityManagerFactory;
-import org.apache.shiro.subject.Subject;
-import org.apache.shiro.util.Factory;
-import org.apache.shiro.util.ThreadContext;
-import org.junit.After;
+import com.hason.dao.UserMapper;
+import com.hason.service.UserService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+import javax.sql.DataSource;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-26
- * <p>Version: 1.0
+ * 基类
+ *
+ * @author Huanghs
+ * @since 2.0
+ * @date 2017/7/19
  */
-public abstract class BaseTest {
+// SpringJUnit支持，由此引入Spring-Test框架支持！
+@RunWith(SpringJUnit4ClassRunner.class)
+// 指定我们SpringBoot工程的Application启动类
+@SpringBootTest(classes = Application.class)
+// 由于是Web项目，Junit需要模拟ServletContext，因此我们需要给我们的测试类加上@WebAppConfiguration。
+@WebAppConfiguration
+public class BaseTest {
 
+    @Autowired
+    private DataSource dataSource;
+    @Autowired
+    private UserMapper userMapper;
+    @Autowired
+    private UserService userService;
 
-    @After
-    public void tearDown() throws Exception {
-        ThreadContext.unbindSubject();//退出时请解除绑定Subject到线程 否则对下次测试造成影响
-}
-
-    protected void login(String configFile, String username, String password) {
-        //1、获取SecurityManager工厂，此处使用Ini配置文件初始化SecurityManager
-        Factory<org.apache.shiro.mgt.SecurityManager> factory =
-                new IniSecurityManagerFactory(configFile);
-
-        //2、得到SecurityManager实例 并绑定给SecurityUtils
-        org.apache.shiro.mgt.SecurityManager securityManager = factory.getInstance();
-        SecurityUtils.setSecurityManager(securityManager);
-
-        //3、得到Subject及创建用户名/密码身份验证Token（即用户身份/凭证）
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-
-        subject.login(token);
-    }
-
-    public Subject subject() {
-        return SecurityUtils.getSubject();
+    @Test
+    public void test() {
+        System.out.println("ok");
+        System.out.println(dataSource);
+        System.out.println(userMapper);
+        System.out.println(userService);
     }
 }

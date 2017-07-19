@@ -36,7 +36,7 @@ public class LoginLogoutTest {
     @Test
     public void testHelloWorld() {
         //1、获取 SecurityManager 工厂，此处使用 Ini 配置文件初始化 SecurityManager
-        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:chapter1-3/shiro.ini");
         //2、得到 SecurityManager 实例 并绑定给 SecurityUtils
         SecurityManager securityManager = factory.getInstance();
         SecurityUtils.setSecurityManager(securityManager);
@@ -61,7 +61,7 @@ public class LoginLogoutTest {
     // 测试自定义的 Realm
     @Test
     public void testCustomRealm() {
-        IniSecurityManagerFactory factory = new IniSecurityManagerFactory("classpath:shiro-realm.ini");
+        IniSecurityManagerFactory factory = new IniSecurityManagerFactory("classpath:chapter1-3/shiro-realm.ini");
         SecurityManager securityManager = factory.getInstance();
         SecurityUtils.setSecurityManager(securityManager);
         Subject subject = SecurityUtils.getSubject();
@@ -82,7 +82,7 @@ public class LoginLogoutTest {
     // 测试 JDBC 的 Realm
     @Test
     public void testJdbcRealm() {
-        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-jdbc-realm.ini");
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:chapter1-3/shiro-jdbc-realm.ini");
         SecurityManager securityManager = factory.getInstance();
         SecurityUtils.setSecurityManager(securityManager);
         Subject subject = SecurityUtils.getSubject();
@@ -99,7 +99,7 @@ public class LoginLogoutTest {
     // 测试 AllSuccessfulStrategy 成功
     @Test
     public void testAllSuccessfulStrategyWithSuccess() {
-        login("classpath:shiro-authenticator-all-success.ini");
+        login("classpath:chapter1-3/chapteshiro-authenticator-all-success.ini");
         Subject subject = SecurityUtils.getSubject();
         // 获取一个身份集合，其包含了 Realm 验证成功的身份信息
         PrincipalCollection principals = subject.getPrincipals();

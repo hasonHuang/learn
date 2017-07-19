@@ -27,7 +27,7 @@ public class RoleTest {
     @Test
     public void testHasRole() {
         try {
-            login("classpath:shiro-role.ini", "hason", "123");
+            login("classpath:chapter1-3/shiro-role.ini", "hason", "123");
         } catch (AuthenticationException e) {
             System.out.println("验证失败");
         }
@@ -47,7 +47,7 @@ public class RoleTest {
 
     @Test(expected = UnauthorizedException.class)
     public void testCheckRole() {
-        login("classpath:shiro-role.ini", "wang", "123");
+        login("classpath:chapter1-3/shiro-role.ini", "wang", "123");
         //断言拥有角色：role1
         subject().checkRole("role1");
         //断言拥有角色：role1 and role3 失败抛出异常
@@ -59,7 +59,7 @@ public class RoleTest {
     }
 
     private void login(String resources, String username, String password) {
-        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-role.ini");
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:chapter1-3/shiro-role.ini");
         SecurityManager securityManager = factory.getInstance();
         SecurityUtils.setSecurityManager(securityManager);
         Subject subject = SecurityUtils.getSubject();
