@@ -1,7 +1,6 @@
 package com.hason;
 
-import com.hason.dao.UserMapper;
-import com.hason.service.UserService;
+import com.hason.service.PermissionService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +28,12 @@ public class BaseTest {
     @Autowired
     private DataSource dataSource;
     @Autowired
-    private UserMapper userMapper;
-    @Autowired
-    private UserService userService;
+    private PermissionService permissionService;
 
     @Test
     public void test() {
         System.out.println("ok");
         System.out.println(dataSource);
-        System.out.println(userMapper);
-        System.out.println(userService);
+        System.out.println(permissionService);
     }
 }

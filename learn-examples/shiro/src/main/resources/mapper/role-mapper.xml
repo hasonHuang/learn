@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hason.dao.RoleDao">
+
+    <insert id="createRole" parameterType="Role" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_roles(role, description, available)
+        VALUES (#{role}, #{description}, #{available});
+    </insert>
+
+    <delete id="deleteRole">
+        DELETE FROM sys_roles_permissions WHERE role_id = #{roleId};
+        DELETE FROM sys_roles WHERE id = #{roleId};
+    </delete>
+
+    <insert id="correlationPermissions">
+        insert into sys_roles_permissions(role_id, permission_id)
+        values
+        <foreach collection="permissionIds" item="permissionId" separator=",">
+          (#{roleId}, #{permissionId})
+        </foreach>
+    </insert>
+
+    <delete id="uncorrelationPermissions">
+        <foreach collection="permissionIds" item="permissionId">
+            delete from sys_roles_permissions where role_id = #{roleId} and permission_id = #{permissionId};
+        </foreach>
+    </delete>
+
+</mapper>

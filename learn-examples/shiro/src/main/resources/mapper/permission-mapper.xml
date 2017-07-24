@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hason.dao.PermissionDao">
+
+    <insert id="insert" parameterType="Permission" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO public.sys_permissions(permission, description, available)
+        VALUES (#{permission}, #{description}, #{available});
+    </insert>
+
+    <delete id="delete" parameterType="java.util.Long">
+        DELETE FROM sys_roles_permissions WHERE permission_id = #{id};
+        DELETE FROM sys_permissions WHERE id = #{id};
+    </delete>
+</mapper>
