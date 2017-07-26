@@ -13,11 +13,10 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.2.RELEASE</version>
+        <version>1.5.4.RELEASE</version>
     </parent>
 
     <properties>
-        <spring-boot.version>1.5.2.RELEASE</spring-boot.version>
         <postgresql.version>42.1.1</postgresql.version>
         <druid.version>1.1.0</druid.version>
         <jedis.version>2.9.0</jedis.version>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hason.dao.UserDao">
+
+    <insert id="createUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_users(username, password, salt, locked)
+        VALUES (#{username}, #{password}, #{salt}, #{locked});
+
+    </insert>
+
+    <update id="updateUser" parameterType="User">
+        UPDATE sys_users
+        SET username = #{username}, password = #{password}, salt = #{salt}, locked = #{locked}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteUser">
+        DELETE FROM sys_users WHERE id = #{id}
+    </delete>
+
+    <select id="findOne" resultType="User">
+        SELECT * FROM sys_users WHERE id = #{id}
+    </select>
+
+    <select id="findByUsername" resultType="User">
+        SELECT  * FROM sys_users WHERE username = #{username}
+    </select>
+
+
+
+    <insert id="correlationPermissions">
+        INSERT INTO sys_users_roles(user_id, role_id)
+        VALUES
+        <foreach collection="roleIds" item="roleId" separator=",">
+          (#{userId}, #{roleId})
+        </foreach>
+    </insert>
+
+    <delete id="uncorrelationRoles">
+        <foreach collection="roleIds" item="roleId">
+            DELETE FROM sys_users_roles WHERE user_id = #{userId} AND role_id = #{roleId};
+        </foreach>
+    </delete>
+
+
+    <select id="findRoles" resultType="java.lang.String">
+        SELECT r.role FROM sys_roles r
+        JOIN sys_users_roles ur ON r.id = ur.role_id
+        JOIN sys_users u ON ur.user_id = u.id
+        WHERE u.username = #{username}
+    </select>
+
+    <select id="findPermissions" resultType="java.lang.String">
+        SELECT p.permission FROM sys_permissions p
+        JOIN sys_roles_permissions rp ON p.id = rp.permission_id
+        JOIN sys_roles r ON rp.role_id = r.id
+        JOIN sys_users_roles ur ON ur.role_id = r.id
+        JOIN sys_users u ON ur.user_id = u.id
+        WHERE u.username = #{username}
+    </select>
+
+</mapper>
