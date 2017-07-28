@@ -18,13 +18,16 @@ import java.util.Set;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private PasswordHelper passwordHelper = new PasswordHelper();
+//    private PasswordHelper passwordHelper = new PasswordHelper();
+    @Autowired
+    private PasswordHelper passwordHelper;
 
     @Autowired
     private UserDao userDao;
 
     @Override
     public User createUser(User user) {
+        passwordHelper.encrypt(user);
         userDao.createUser(user);
         return user;
     }

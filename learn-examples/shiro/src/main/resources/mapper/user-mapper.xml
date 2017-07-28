@@ -26,12 +26,12 @@
     </select>
 
     <select id="findByUsername" resultType="User">
-        SELECT  * FROM sys_users WHERE username = #{username}
+        SELECT * FROM sys_users WHERE username = #{username}
     </select>
 
 
 
-    <insert id="correlationPermissions">
+    <insert id="correlationRoles">
         INSERT INTO sys_users_roles(user_id, role_id)
         VALUES
         <foreach collection="roleIds" item="roleId" separator=",">

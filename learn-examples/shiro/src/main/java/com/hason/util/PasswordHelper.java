@@ -3,6 +3,7 @@ package com.hason.util;
 import com.hason.entity.User;
 import org.apache.shiro.codec.Hex;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.springframework.stereotype.Component;
 
 import java.security.SecureRandom;
 
@@ -13,6 +14,7 @@ import java.security.SecureRandom;
  * @since 2.0
  * @date 2017/7/26
  */
+@Component
 public class PasswordHelper {
 
     /** 加密算法，默认 md5 */
@@ -36,9 +38,16 @@ public class PasswordHelper {
         SimpleHash simpleHash = new SimpleHash(
                 algorithmName,
                 user.getPassword(),
-                user.getSalt(),
+                user.getCredentialsSalt(),//salt=username+salt
                 hashIterations);
         user.setPassword(simpleHash.toHex());
+    }
+
+    /**
+     * 获取哈希算法迭代次数
+     */
+    public int getHashIterations() {
+        return hashIterations;
     }
 
     /**

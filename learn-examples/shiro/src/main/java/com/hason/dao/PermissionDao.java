@@ -2,6 +2,7 @@ package com.hason.dao;
 
 import com.hason.entity.Permission;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 权限 dao
@@ -15,5 +16,5 @@ public interface PermissionDao {
 
     boolean insert(Permission permission);
 
-    boolean delete(Long id);
+    boolean delete(@Param("id") Long id);
 }
