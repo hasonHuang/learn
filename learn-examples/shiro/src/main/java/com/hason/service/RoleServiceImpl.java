@@ -4,6 +4,7 @@ import com.hason.dao.RoleDao;
 import com.hason.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 角色接口
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
  * @date 2017/7/24
  */
 @Service
+@Transactional
 public class RoleServiceImpl implements RoleService {
 
     @Autowired

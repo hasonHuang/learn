@@ -5,6 +5,7 @@ import com.hason.entity.User;
 import com.hason.util.PasswordHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -16,6 +17,7 @@ import java.util.Set;
  * @date 2017/7/26
  */
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
 //    private PasswordHelper passwordHelper = new PasswordHelper();

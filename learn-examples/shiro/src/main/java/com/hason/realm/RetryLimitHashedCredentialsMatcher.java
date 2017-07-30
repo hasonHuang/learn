@@ -26,7 +26,7 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
     private int maxLimit = 5;
 
     public RetryLimitHashedCredentialsMatcher() {
-        // 与时间可以改为 Ehcache 或者 Redis 版本
+        // 有时间的话可以优化，改为 Ehcache 或者 Redis 版本
         counter = new HashMap<>();
     }
 
