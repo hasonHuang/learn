@@ -5,8 +5,8 @@ import com.hason.realm.UserRealm;
 import com.hason.service.UserService;
 import com.hason.util.PasswordHelper;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
@@ -68,11 +68,12 @@ public class ShiroConfig {
     }
 
     @Bean
-    public SecurityManager securityManager(UserRealm realm) {
+    public SecurityManager securityManager(UserRealm realm, SessionManager sessionManager) {
         // 必须使用 DefaultWebSecurityManager，否则启动时报错 SecurityManager 没有实现 WebSecurityManager 接口
 //        DefaultSecurityManager securityManager = new DefaultSecurityManager();
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(realm);
+        securityManager.setSessionManager(sessionManager);
         SecurityUtils.setSecurityManager(securityManager);
         return securityManager;
     }

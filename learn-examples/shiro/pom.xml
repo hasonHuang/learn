@@ -26,6 +26,7 @@
         <beetl.version>2.7.12</beetl.version>
         <orika.version>1.5.0</orika.version>
         <common-lang3.version>3.5</common-lang3.version>
+        <ehcache.version>2.10.4</ehcache.version>
         <junit.version>4.12</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -82,11 +83,11 @@
         </dependency>
 
         <!-- 缓存 -->
-        <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <version>${ehcache.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>net.sf.ehcache</groupId>-->
+            <!--<artifactId>ehcache</artifactId>-->
+            <!--<version>${ehcache.version}</version>-->
+        <!--</dependency>-->
 
         <!-- -->
         <dependency>
@@ -142,6 +143,12 @@
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <!-- Shiro Support cache -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
             <version>${shiro.version}</version>
         </dependency>
 
