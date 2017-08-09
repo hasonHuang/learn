@@ -1,0 +1,9 @@
+<html>
+<head>
+    <title>SSL页面</title>
+</head>
+
+<body>
+SSL页面欢迎您：${username}
+</body>
+</html>

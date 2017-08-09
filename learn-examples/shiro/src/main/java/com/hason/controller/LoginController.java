@@ -5,12 +5,18 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 登录
@@ -30,9 +36,11 @@ public class LoginController {
     @RequestMapping("/login")
     public String login(@RequestParam String username,
                         @RequestParam String password,
+                        @RequestParam(defaultValue = "false") Boolean rememberMe,
                         Model model) {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+        token.setRememberMe(rememberMe);    // 需要设置 RememberMeManager
         try {
             subject.login(token);
         } catch (UnknownAccountException e) {
@@ -59,6 +67,24 @@ public class LoginController {
         return "auth";
     }
 
+    // 使用注解标记需要认证，如果不通过时抛出异常
+    @RequestMapping("/authAnno")
+    @ResponseBody
+    @RequiresRoles("admin")
+    public String authAnno() {
+        return "auth";
+    }
+
+    // 处理异常
+    @ExceptionHandler(Exception.class)
+    public ModelAndView processException(NativeWebRequest request, Exception ex) {
+        System.err.println("进入异常处理:" + ex);
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("errorPage");
+        mv.addObject("error", ex.getMessage());
+        return mv;
+    }
+
     @RequestMapping("/authcBasic")
     @ResponseBody
     public String authcBasic() {
@@ -77,4 +103,9 @@ public class LoginController {
         return "permission";
     }
 
+    // 测试 SSL
+    @RequestMapping("/ssl")
+    public String ssl() {
+        return "ssl";
+    }
 }
