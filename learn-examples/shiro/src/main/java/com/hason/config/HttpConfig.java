@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 2.0
  * @date 2017/8/9
  */
-@Configuration
+//@Configuration
 public class HttpConfig {
 
     @Bean

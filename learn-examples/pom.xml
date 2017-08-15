@@ -13,6 +13,7 @@
     <modules>
         <module>redis</module>
         <module>shiro</module>
+        <module>shiro-example</module>
     </modules>
 
 

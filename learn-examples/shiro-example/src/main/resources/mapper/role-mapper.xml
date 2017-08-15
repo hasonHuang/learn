@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hason.dao.RoleDao">
+
+    <!-- 表所有字段 -->
+    <sql id="allColumns">
+        id, role, description, resource_ids, available
+    </sql>
+
+    <!-- 查询所有数据 -->
+    <select id="findAll" resultType="Role">
+        SELECT
+        <include refid="allColumns" />
+        FROM sys_role
+    </select>
+
+    <!-- 根据主键查询数据 -->
+    <select id="findOne" resultType="Role">
+        SELECT
+        <include refid="allColumns" />
+        FROM sys_role WHERE id = #{id}
+    </select>
+
+    <!-- 插入数据 -->
+    <insert id="createRole" parameterType="Role" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_role (role, description, resource_ids, available)
+        VALUES (
+        #{role},
+        #{description},
+        #{resourceIds},
+        #{available}
+        )
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id="updateRole" parameterType="Role">
+        UPDATE sys_role SET
+        role = #{role},
+        description = #{description},
+        resource_ids = #{resourceIds},
+        available = #{available}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据主键删除数据 -->
+    <delete id="deleteRole">
+        DELETE FROM sys_role WHERE id = #{id}
+    </delete>
+
+</mapper>

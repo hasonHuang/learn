@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hason.dao.UserDao">
+
+    <!-- 表所有字段 -->
+    <sql id="allColumns">
+        id, organization_id, username, password, salt,
+        role_ids, locked
+    </sql>
+
+    <!-- 查询所有数据 -->
+    <select id="findAll" resultType="User">
+        SELECT
+        <include refid="allColumns" />
+        FROM sys_user
+    </select>
+
+    <!-- 根据主键查询数据 -->
+    <select id="findOne" resultType="User">
+        SELECT
+        <include refid="allColumns" />
+        FROM sys_user WHERE id = #{id}
+    </select>
+
+    <select id="findByUsername" resultType="User">
+        SELECT <include refid="allColumns"/>
+        FROM sys_user WHERE username = #{username}
+    </select>
+
+    <!-- 插入数据 -->
+    <insert id="createUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_user (organization_id, username, password, salt,
+        role_ids, locked)
+        VALUES (
+        #{organizationId},
+        #{username},
+        #{password},
+        #{salt},
+        #{roleIds},
+        #{locked}
+        )
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id="updateUser" parameterType="User">
+        UPDATE sys_user SET
+        organization_id = #{organizationId},
+        username = #{username},
+        password = #{password},
+        salt = #{salt},
+        role_ids = #{roleIds},
+        locked = #{locked}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据主键删除数据 -->
+    <delete id="deleteUser">
+        DELETE FROM sys_user WHERE id = #{id}
+    </delete>
+
+</mapper>

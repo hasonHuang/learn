@@ -27,6 +27,7 @@
         <orika.version>1.5.0</orika.version>
         <common-lang3.version>3.5</common-lang3.version>
         <ehcache.version>2.10.4</ehcache.version>
+        <oauth2.version>1.0.2</oauth2.version>
         <junit.version>4.12</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -150,6 +151,24 @@
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-ehcache</artifactId>
             <version>${shiro.version}</version>
+        </dependency>
+        <!-- Shiro Support CAS -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-cas</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+
+        <!-- OAuth2.0 依赖 -->
+        <dependency>
+            <groupId>org.apache.oltu.oauth2</groupId>
+            <artifactId>org.apache.oltu.oauth2.authzserver</artifactId>
+            <version>${oauth2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.oltu.oauth2</groupId>
+            <artifactId>org.apache.oltu.oauth2.resourceserver</artifactId>
+            <version>${oauth2.version}</version>
         </dependency>
 
         <!-- 工具 -->

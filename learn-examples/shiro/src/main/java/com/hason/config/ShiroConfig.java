@@ -6,8 +6,12 @@ import com.hason.service.UserService;
 import com.hason.util.PasswordHelper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
+import org.apache.shiro.cas.CasFilter;
+import org.apache.shiro.cas.CasRealm;
+import org.apache.shiro.cas.CasSubjectFactory;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
@@ -39,13 +43,15 @@ public class ShiroConfig {
     ==============================================*/
 
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(
+            SecurityManager securityManager, CasFilter casFilter) {
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
 
         //Shiro的核心安全接口,这个属性是必须的
         factoryBean.setSecurityManager(securityManager);
         // 要求登录时的链接(可根据项目的URL进行替换),非必须的属性,默认会自动寻找Web工程根目录下的"/login.jsp"页面
-        factoryBean.setLoginUrl("/loginPage");
+//        factoryBean.setLoginUrl("/loginPage");
+        factoryBean.setLoginUrl(CasConfig.loginUrl);
         // 登录成功后要跳转的连接,逻辑也可以自定义，例如返回上次请求的页面
         factoryBean.setSuccessUrl("/loginSuccess");
         // 用户访问未对其授权的资源时,所显示的连接
@@ -57,6 +63,8 @@ public class ShiroConfig {
          * Map中key(xml中是指value值)的第一个'/'代表的路径是相对于HttpServletRequest.getContextPath()的值来的
          * anon：它对应的过滤器里面是空的,什么都没做,这里.do和.jsp后面的*表示参数,比方说login.jsp?main这种
          * authc：该过滤器下的页面必须验证后才能访问,它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter
+         *
+         * DefaultFilterChainManager 默认会添加 org.apache.shiro.web.filter.mgt.DefaultFilter 中声明的拦截器
          */
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 
@@ -79,11 +87,12 @@ public class ShiroConfig {
 
         factoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
-        // 添加支持 SSL
-//        Map<String, Filter> filterMap = new LinkedHashMap<>();
+        // 添加 Filter
+        Map<String, Filter> filterMap = new LinkedHashMap<>();
 //        filterMap.put("ssl", sslFilter());
 //        filterMap.put("authc", formAuthenticationFilter());
-//        factoryBean.setFilters(filterMap);
+        filterMap.put("casFilter", casFilter);
+        factoryBean.setFilters(filterMap);
 
         return factoryBean;
     }
@@ -157,6 +166,11 @@ public class ShiroConfig {
     }
 
     @Bean
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+        return new LifecycleBeanPostProcessor();
+    }
+
+    @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
@@ -168,25 +182,24 @@ public class ShiroConfig {
     |            配置SecurityManager               |
     ==============================================*/
 
-    @Bean
-    public SecurityManager securityManager(UserRealm realm, SessionManager sessionManager) {
-        // 必须使用 DefaultWebSecurityManager，否则启动时报错 SecurityManager 没有实现 WebSecurityManager 接口
-//        DefaultSecurityManager securityManager = new DefaultSecurityManager();
-        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(realm);                            // 设置数据源
-        securityManager.setSessionManager(sessionManager);          // 设置会话管理器
-        securityManager.setRememberMeManager(rememberMeManager());  // 设置RememberMe管理器
-
-        SecurityUtils.setSecurityManager(securityManager);
-        // <!-- 相当于调用 SecurityUtils.setSecurityManager(securityManager) -->
-        // <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-        // <property name="staticMethod"
-        //         value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
-        // <property name="arguments" ref="securityManager"/>
-        // </bean>
-
-        return securityManager;
-    }
+//    @Bean
+//    public SecurityManager securityManager(UserRealm realm, SessionManager sessionManager) {
+//        // 必须使用 DefaultWebSecurityManager，否则启动时报错 SecurityManager 没有实现 WebSecurityManager 接口
+//        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+//        securityManager.setRealm(realm);                            // 设置数据源
+//        securityManager.setSessionManager(sessionManager);          // 设置会话管理器
+//        securityManager.setRememberMeManager(rememberMeManager());  // 设置RememberMe管理器
+//
+//        SecurityUtils.setSecurityManager(securityManager);
+//        // <!-- 相当于调用 SecurityUtils.setSecurityManager(securityManager) -->
+//        // <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+//        // <property name="staticMethod"
+//        //         value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
+//        // <property name="arguments" ref="securityManager"/>
+//        // </bean>
+//
+//        return securityManager;
+//    }
 
     @Bean
     public UserRealm userRealm(UserService userService, CredentialsMatcher matcher) {

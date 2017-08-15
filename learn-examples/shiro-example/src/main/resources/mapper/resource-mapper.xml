@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hason.dao.ResourceDao">
+
+    <!-- 表所有字段 -->
+    <sql id="allColumns">
+        id, name, type, url, parent_id, 
+        parent_ids, permission, available
+    </sql>
+
+    <!-- 查询所有数据 -->
+    <select id="findAll" resultType="Resource">
+        SELECT
+        <include refid="allColumns" />
+        FROM sys_resource
+    </select>
+
+    <!-- 根据主键查询数据 -->
+    <select id="findOne" resultType="Resource" >
+        SELECT
+        <include refid="allColumns" />
+        FROM sys_resource WHERE id = #{id}
+    </select>
+
+    <!-- 插入数据 -->
+    <insert id="createResource" parameterType="Resource" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_resource (name, type, url, parent_id,
+        parent_ids, permission, available)
+        VALUES (
+        #{name},
+        #{type},
+        #{url},
+        #{parentId},
+        #{parentIds},
+        #{permission},
+        #{available}
+        )
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id="updateResource" parameterType="Resource">
+        UPDATE sys_resource SET
+        name = #{name},
+        type = #{type},
+        url = #{url},
+        parent_id = #{parentId},
+        parent_ids = #{parentIds},
+        permission = #{permission},
+        available = #{available}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据主键删除数据 -->
+    <delete id="deleteResource">
+        DELETE FROM sys_resource WHERE id = #{id}
+    </delete>
+
+</mapper>

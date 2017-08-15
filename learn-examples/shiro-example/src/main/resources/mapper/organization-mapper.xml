@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hason.dao.OrganizationDao">
+
+    <!-- 表所有字段 -->
+    <sql id="allColumns">
+        id, name, parent_id, parent_ids, available
+    </sql>
+
+    <!-- 查询所有数据 -->
+    <select id="findAll" resultType="Organization">
+        SELECT
+        <include refid="allColumns" />
+        FROM sys_organization
+    </select>
+
+    <!-- 根据主键查询数据 -->
+    <select id="findOne" resultType="Organization">
+        SELECT
+        <include refid="allColumns" />
+        FROM sys_organization WHERE id = #{id}
+    </select>
+
+    <select id="findAllWithExclude" resultType="Organization">
+        select <include refid="allColumns" />
+        from sys_organization
+        where id != #{id} and parent_ids not like #{makeSelfAsParentIds}
+    </select>
+
+    <!-- 插入数据 -->
+    <insert id="createOrganization" parameterType="Organization" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_organization (name, parent_id, parent_ids, available)
+        VALUES (
+        #{name},
+        #{parentId},
+        #{parentIds},
+        #{available}
+        )
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id="updateOrganization" parameterType="Organization">
+        UPDATE sys_organization SET
+        name = #{name},
+        parent_id = #{parentId},
+        parent_ids = #{parentIds},
+        available = #{available}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据主键删除数据 -->
+    <delete id="deleteOrganization">
+        DELETE FROM sys_organization WHERE id = #{id}
+    </delete>
+
+</mapper>
