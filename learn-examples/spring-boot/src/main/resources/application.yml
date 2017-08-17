@@ -1,0 +1,19 @@
+
+
+spring:
+  profiles:
+    active: dev
+
+  http:
+    encoding:
+      charset: GBK
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+debug: true
+
+hello:
+  msg: " Hason Huang!"
