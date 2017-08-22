@@ -39,7 +39,7 @@ public class MyAuthorizingRealm extends AuthorizingRealm {
         String username = (String) token.getPrincipal();
         // 获取密码
         String password = new String((char[]) token.getCredentials());
-        if (!"hason".equals(username)) {
+        if (!"com.hason".equals(username)) {
             throw new UnknownAccountException();
         }
         if (!"123".equals(password)) {

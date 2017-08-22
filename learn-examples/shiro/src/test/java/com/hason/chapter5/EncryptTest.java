@@ -24,7 +24,7 @@ public class EncryptTest {
     // hiro 提供了 base64 和 16 进制字符串编码/解码的 API 支持，方便一些编码解码操作
     @Test
     public void testEncode() {
-        String str = "hason";   // 待加密字符串
+        String str = "com.hason";   // 待加密字符串
 
         // Base64 编码/解码
         String base64 = Base64.encodeToString(str.getBytes());
@@ -38,7 +38,7 @@ public class EncryptTest {
     // Shiro 提供的散列算法
     @Test
     public void testHash() {
-        String str = "hason";   // 待加密字符串
+        String str = "com.hason";   // 待加密字符串
         String salt = "666";    // 盐
 
         // MD5

@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.hason.config.HelloAutoConfig
+com.com.hason.config.HelloAutoConfig

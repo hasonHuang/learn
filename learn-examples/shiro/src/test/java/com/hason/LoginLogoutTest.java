@@ -42,7 +42,7 @@ public class LoginLogoutTest {
         SecurityUtils.setSecurityManager(securityManager);
         //3、得到 Subject 及创建用户名/密码身份验证 Token（即用户身份/凭证）
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken("hason", "123");
+        UsernamePasswordToken token = new UsernamePasswordToken("com.hason", "123");
         //4、登陆，即身份验证
         try {
             subject.login(token);
@@ -66,7 +66,7 @@ public class LoginLogoutTest {
         SecurityUtils.setSecurityManager(securityManager);
         Subject subject = SecurityUtils.getSubject();
         try {
-            subject.login(new UsernamePasswordToken("hason", "123"));
+            subject.login(new UsernamePasswordToken("com.hason", "123"));
         } catch (UnknownAccountException e) {
             System.out.println("用户名错误");
         } catch (IncorrectCredentialsException e) {
@@ -87,7 +87,7 @@ public class LoginLogoutTest {
         SecurityUtils.setSecurityManager(securityManager);
         Subject subject = SecurityUtils.getSubject();
         try {
-            subject.login(new UsernamePasswordToken("hason", "123"));
+            subject.login(new UsernamePasswordToken("com.hason", "123"));
         } catch (AuthenticationException e) {
             System.out.println("验证失败");
         }
@@ -111,6 +111,6 @@ public class LoginLogoutTest {
         SecurityManager securityManager = factory.getInstance();
         SecurityUtils.setSecurityManager(securityManager);
         Subject subject = SecurityUtils.getSubject();
-        subject.login(new UsernamePasswordToken("hason", "123"));
+        subject.login(new UsernamePasswordToken("com.hason", "123"));
     }
 }

@@ -56,7 +56,7 @@ public class JavaConfigCreateTest {
 
         // 测试
         Subject subject = SecurityUtils.getSubject();
-        subject.login(new UsernamePasswordToken("hason", "123"));
+        subject.login(new UsernamePasswordToken("com.hason", "123"));
         Assert.assertTrue(subject.isAuthenticated());
     }
 
@@ -67,7 +67,7 @@ public class JavaConfigCreateTest {
         SecurityManager securityManager = factory.getInstance();
         SecurityUtils.setSecurityManager(securityManager);
         Subject subject = SecurityUtils.getSubject();
-        subject.login(new UsernamePasswordToken("hason", "123"));
+        subject.login(new UsernamePasswordToken("com.hason", "123"));
         Assert.assertTrue(subject.isAuthenticated());
     }
 }

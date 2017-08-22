@@ -33,7 +33,7 @@ public class PermissionTest {
     // 没有提供如 isPermittedAny 用于判断拥有某一个权限的接口。
     @Test
     public void testIsPermission() {
-        login("classpath:chapter1-3/shiro-permission.ini", "hason", "123");
+        login("classpath:chapter1-3/shiro-permission.ini", "com.hason", "123");
         //判断拥有权限：user:create
         Assert.assertTrue("没有权限 user:create", subject().isPermitted("user:create"));
         //判断拥有权限：user:update and user:delete

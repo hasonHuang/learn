@@ -27,7 +27,7 @@ public class RoleTest {
     @Test
     public void testHasRole() {
         try {
-            login("classpath:chapter1-3/shiro-role.ini", "hason", "123");
+            login("classpath:chapter1-3/shiro-role.ini", "com.hason", "123");
         } catch (AuthenticationException e) {
             System.out.println("验证失败");
         }

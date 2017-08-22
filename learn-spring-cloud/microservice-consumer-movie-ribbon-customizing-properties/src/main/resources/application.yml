@@ -1,0 +1,22 @@
+debug: true
+server:
+  port: 8010
+
+spring:
+  application:
+    name: microservice-consumer-moive    # 注册到 Eureka Server 上的应用名称
+eureka:
+  client:
+    service-url:
+      # 设置与 Eureka Server 交互的地址，查询服务和注册服务都需要依赖这个地址
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    # 将自己的IP注册到 Eureka Server，false 表示注册微服务所在操作系统的 hostname 到 Eureka Server
+    prefer-ip-address: true
+
+# Spring Cloud Netflix 1.2.0 开始 (Camden SR4 使用的版本是1.2.4)
+# Ribbon 支持使用属性自定义 Ribbon 客户端
+# 格式： <clientName>.ribbon，具体参考书本 P60
+microservice-provider-user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

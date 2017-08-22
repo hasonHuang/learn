@@ -88,7 +88,7 @@ public class BaseTest {
         roleService.correlationPermissions(r2.getId(), p2.getId());
 
         //4、新增用户
-        u1 = new User("hason", password);
+        u1 = new User("com.hason", password);
         u2 = new User("li", password);
         u3 = new User("wu", password);
         u4 = new User("wang", password);
