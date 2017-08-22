@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SpringBootExampleApplication {
 
+    // 通过自定义的 starter pom 自动配置
     @Autowired
     private HelloService helloService;
 
