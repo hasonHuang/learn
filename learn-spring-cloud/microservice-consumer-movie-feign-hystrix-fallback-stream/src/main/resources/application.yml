@@ -1,0 +1,19 @@
+debug: true
+server:
+  port: 8020
+
+spring:
+  application:
+    name: microservice-consumer-moive-feign-hystrix-fallback-stream    # 注册到 Eureka Server 上的应用名称
+eureka:
+  client:
+    service-url:
+      # 设置与 Eureka Server 交互的地址，查询服务和注册服务都需要依赖这个地址
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    # 将自己的IP注册到 Eureka Server，false 表示注册微服务所在操作系统的 hostname 到 Eureka Server
+    prefer-ip-address: true
+
+# 说明：请务必注意，在Spring Cloud Dalston中，Feign默认是不开启Hystrix的。
+# 因此，如使用Dalston请务必额外设置属性：feign.hystrix.enabled=true，否则断路器不会生效。
+# 而，Spring Cloud Angel/Brixton/Camden中，Feign默认都是开启Hystrix的。无需设置该属性。
