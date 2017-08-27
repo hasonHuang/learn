@@ -1,0 +1,17 @@
+server:
+  port: 8040
+
+spring:
+  application:
+    name: microservice-gateway-zuul
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+# 上传大文件得将超时时间设置长一些，否则会报超时异常
+# 以下几行设置来自 http://cloud.spring.io/spring-cloud-static/Camden.SR4/#_uploading_files_through_zuul
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000

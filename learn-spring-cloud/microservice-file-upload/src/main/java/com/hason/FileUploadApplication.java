@@ -2,14 +2,14 @@ package com.hason;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-/**
- * Created by Hason on 2017/8/22.
- */
 @SpringBootApplication
-public class ProviderUserApplication {
+@EnableDiscoveryClient
+public class FileUploadApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ProviderUserApplication.class, args);
+        SpringApplication.run(FileUploadApplication.class, args);
     }
+
 }

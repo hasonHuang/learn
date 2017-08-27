@@ -35,6 +35,12 @@
         <module>microservice-hystrix-turbine</module>
         <module>microservice-consumer-movie-ribbon-hystrix-turbine-mq</module>
         <module>microservice-hystrix-turbine-mq</module>
+        <module>microservice-gateway-zuul</module>
+        <module>microservice-file-upload</module>
+        <module>microservice-gateway-zuul-filter</module>
+        <module>microservice-gateway-zuul-fallback</module>
+        <module>microservice-gateway-zuul-file-upload</module>
+        <module>microservice-gateway-zuul-aggregation</module>
     </modules>
     <packaging>pom</packaging>
 
