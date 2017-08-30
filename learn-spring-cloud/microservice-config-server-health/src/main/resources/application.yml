@@ -1,0 +1,21 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: microservice-config-server
+  cloud:
+    config:
+      server:
+        git:
+          # 配置 Git 仓库的地址
+          uri: https://github.com/HasonHuang/spring-cloud-config-server-repo
+          # Git 仓库账号
+          #username: HasonHuang
+          # Git 仓库密码
+          #password: hason2012
+        health:
+          repositories:
+            a-foo:
+              label: config-label-v2.0
+              name: microservice-foo
+              profiles: dev

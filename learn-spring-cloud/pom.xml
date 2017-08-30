@@ -41,6 +41,10 @@
         <module>microservice-gateway-zuul-fallback</module>
         <module>microservice-gateway-zuul-file-upload</module>
         <module>microservice-gateway-zuul-aggregation</module>
+        <module>microservice-config-server</module>
+        <module>microservice-config-client</module>
+        <module>microservice-config-server-health</module>
+        <module>microservice-config-server-encryption</module>
     </modules>
     <packaging>pom</packaging>
 

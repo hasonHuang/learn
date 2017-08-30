@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/spring-cloud-samples/config-repo
+          repos:
+            team-a:
+              uri: https://github.com/HasonHuang/spring-cloud-config-server-repo
+              pattern: microservice-*
+              clone-on-start: true    # 启动时就 clone 仓库，可以快速识别错误的配置
+logging:
+  level:
+    org.springframework.cloud: DEBUG
+    org.springframework.boot: DEBUG
+
+# 测试：
+# 1.观察启动日志
+# 2.访问http://localhost:8080/microservice-foo/dev

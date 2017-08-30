@@ -1,0 +1,17 @@
+server:
+  port: 8080
+encrypt:
+  key: foo    # 设置对称密钥
+spring:
+  application:
+    name: microservice-config-server
+  cloud:
+    config:
+      server:
+        git:
+          # 配置 Git 仓库的地址
+          uri: https://github.com/HasonHuang/spring-cloud-config-server-repo
+          # Git 仓库账号
+          #username: HasonHuang
+          # Git 仓库密码
+          #password: hason2012
