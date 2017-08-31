@@ -1,0 +1,15 @@
+spring:
+  application:
+    # 对应 config server 所获取的配置文件的{application}
+    name: microservice-foo
+  cloud:
+    config:
+      uri: http://localhost:8080
+      # 指定需要用户认证的配置服务器的用户密码
+      # 另一种方式：uri: http://user:password123@localhost:8080
+      username: user
+      password: password123
+      # profile 对应 Config Server 所获取的配置文件中的 {profile}
+      profile: dev
+      # 指定 Git 仓库的分支，对应 Config Server 所获取的配置文件的 {label}
+      label: master

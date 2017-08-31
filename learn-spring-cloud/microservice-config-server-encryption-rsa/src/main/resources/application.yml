@@ -1,8 +1,11 @@
 server:
   port: 8080
 encrypt:
-  # 设置对称密钥
-  key: foo
+  key-store:
+    location: classpath:/server.jks  # jks文件路径
+    password: letmein                # storepass
+    alias: mytestkey                 # alias
+    secret: changeme                 # keypass
 spring:
   application:
     name: microservice-config-server

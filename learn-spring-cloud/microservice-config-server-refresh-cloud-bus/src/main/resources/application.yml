@@ -1,12 +1,17 @@
 server:
   port: 8080
-encrypt:
-  # 设置对称密钥
-  key: foo
 spring:
+  rabbitmq:
+    host: 122.9.61.197
+    port: 5672
+    username: admin
+    password: admin
   application:
     name: microservice-config-server
   cloud:
+    bus:
+      trace:
+        enabled: true   # 开启 Cloud Bus 的跟踪
     config:
       server:
         git:
