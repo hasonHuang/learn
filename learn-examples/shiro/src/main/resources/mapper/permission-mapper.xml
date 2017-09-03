@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.com.hason.dao.PermissionDao">
+<mapper namespace="com.hason.dao.PermissionDao">
 
     <insert id="insert" parameterType="Permission" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO public.sys_permissions(permission, description, available)
