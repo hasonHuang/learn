@@ -17,6 +17,7 @@
         <module>spring-mvc</module>
         <module>spring-boot</module>
         <module>spring-boot-starter-hello</module>
+        <module>id-generator</module>
     </modules>
 
 
