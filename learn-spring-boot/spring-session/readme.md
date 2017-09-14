@@ -110,6 +110,6 @@ spring:
 
 3. 另外两个key，`expirations:1504446540000`和`sessions:expires:7079…`我发现大多数的文章都没有对其分析，前者是一个SET类型，后者是一个STRING类型，可能会有读者发出这样的疑问，redis自身就有过期时间的设置方式TTL，为什么要额外添加两个key来维持session过期的特性呢？这需要对redis有一定深入的了解才能想到这层设计。当然这不是本节的重点，简单提一下：redis清除过期key的行为是一个异步行为且是一个低优先级的行为，用文档中的原话来说便是，可能会导致session不被清除。于是引入了专门的expiresKey，来专门负责session的清除，包括我们自己在使用redis时也需要关注这一点。在开发层面，我们仅仅需要关注第三个key就行了。
 
-总结
+## 总结
 
 本节主要讲解了Spring Boot如何集成Spring Session，下一节将介绍更加复杂的特性。包括自定义Cookie序列化策略，与Spring Security的集成，根据用户名查找session等特性以及使用注意点。
