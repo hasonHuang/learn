@@ -38,7 +38,8 @@ Spring Session provides an API and implementations for managing a user’s sessi
 
 *   配置
 
-    配置类开启Redis Http Session
+配置类开启Redis Http Session
+
 ```java
     @Configuration
     @EnableRedisHttpSession
@@ -46,9 +47,9 @@ Spring Session provides an API and implementations for managing a user’s sessi
     }
 ```
 
-    基本是0配置，只需要让主配置扫描到`@EnableRedisHttpSession`即可
+基本是0配置，只需要让主配置扫描到`@EnableRedisHttpSession`即可
 
-    配置文件application.yml，配置连接的redis信息
+配置文件application.yml，配置连接的redis信息
 
 ```yml
 spring:
