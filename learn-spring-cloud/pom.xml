@@ -53,6 +53,7 @@
         <module>microservice-config-server-eureka</module>
         <module>microservice-config-server-authenticating</module>
         <module>microservice-config-client-authenticating</module>
+        <module>microservice-simple-provider-user-trace</module>
     </modules>
     <packaging>pom</packaging>
 
