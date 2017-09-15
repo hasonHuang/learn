@@ -11,6 +11,7 @@
     <modules>
         <module>mvc-exception-handler</module>
         <module>spring-session</module>
+        <module>spring-session-auth</module>
     </modules>
 
 </project>
