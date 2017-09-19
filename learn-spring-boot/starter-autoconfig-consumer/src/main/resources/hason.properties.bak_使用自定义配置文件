@@ -1,0 +1,2 @@
+# ?? @PropertySource(value = "classpath:hason.yml")
+hason.hello.msg=Hason

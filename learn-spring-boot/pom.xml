@@ -13,7 +13,9 @@
         <module>spring-session</module>
         <module>spring-session-auth</module>
         <module>mvc-jsp</module>
-        <module>mvc-jsp-2</module>
+        <module>starter-autoconfig</module>
+        <module>starter-service-hello</module>
+        <module>starter-autoconfig-consumer</module>
     </modules>
 
 </project>
