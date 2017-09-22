@@ -1,6 +1,8 @@
 package com.hason.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.session.data.redis.config.ConfigureRedisAction;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 /**
@@ -13,4 +15,20 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @Configuration
 @EnableRedisHttpSession
 public class HttpSessionConfig {
+
+    /**
+     * 如果是自建服务器搭建Redis服务，一般是无需该配置即可运行；
+     * 很多Redis云服务提供商考虑到安全因素，会禁用掉Redis的config命令;
+     *
+     * 解决方案：
+     * 1. 配置Redis： redis-cli config set notify-keyspace-events Egx
+     * 2. 配置Spring Session 不再执行config命令
+     * 参考 http://docs.spring.io/spring-session/docs/current/reference/html5/#api-redisoperationssessionrepository-sessiondestroyedevent
+     */
+    @Bean
+    public ConfigureRedisAction configureRedisAction() {
+        // 令 Spring Session 不执行 config 命令
+        return ConfigureRedisAction.NO_OP;
+    }
+
 }
