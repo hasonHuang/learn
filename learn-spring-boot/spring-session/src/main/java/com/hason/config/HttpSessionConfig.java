@@ -5,8 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.session.data.redis.config.ConfigureRedisAction;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
-import java.util.TreeSet;
-
 /**
  * 开启 Redis Http Session
  *
@@ -33,11 +31,4 @@ public class HttpSessionConfig {
         return ConfigureRedisAction.NO_OP;
     }
 
-    public static void main(String[] args) {
-        TreeSet<Integer> set = new TreeSet<>();
-        set.add(3);
-        set.add(2);
-        set.add(1);
-        set.forEach(System.out::println);
-    }
 }
