@@ -7,6 +7,10 @@
     <groupId>com.hason</groupId>
     <artifactId>distributed-transaction</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>ms-account</module>
+        <module>ms-discovery-eureka</module>
+    </modules>
     <packaging>pom</packaging>
 
     <name>Hason Learn :: Distributed Transaction Process</name>
