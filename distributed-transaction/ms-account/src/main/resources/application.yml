@@ -1,8 +1,26 @@
+server:
+  port: 8000
+
 spring:
   application:
     name: ms-account
-server:
-  port: 8000
+
+  # 数据库配置
+  datasource:
+    url: jdbc:postgresql://localhost:5432/distributed_transaction_db
+    username: postgres
+    password: 123456
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.postgresql.Driver
+
+    platform: postgresql          # 指定数据源类型
+    schema: classpath:schema.sql  # 指定建表脚本
+#    data: classpath:data.sql      # 指定数据脚本
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
 
 # 配置服务注册
 eureka:
