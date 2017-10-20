@@ -1,4 +1,4 @@
-package com.hason.dtp.account.entity.constant;
+package com.hason.dtp.message.entity.constant;
 
 /**
  * 事务消息的状态

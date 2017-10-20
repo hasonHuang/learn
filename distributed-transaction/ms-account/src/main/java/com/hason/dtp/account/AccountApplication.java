@@ -1,7 +1,11 @@
 package com.hason.dtp.account;
 
+import com.hason.dtp.account.entity.User;
+import com.hason.dtp.core.utils.converter.BooleanAttributeConverter;
+import com.hason.dtp.message.entity.Message;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
@@ -13,6 +17,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @SpringBootApplication
 @EnableEurekaClient
+@EntityScan(basePackageClasses = { Message.class, User.class, BooleanAttributeConverter.class})
 public class AccountApplication {
 
     public static void main(String[] args) {

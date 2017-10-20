@@ -1,4 +1,4 @@
-package com.hason.dtp.account.dao.converter;
+package com.hason.dtp.core.utils.converter;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

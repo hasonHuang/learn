@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.hason</groupId>
+    <groupId>com.hason.dtp</groupId>
     <artifactId>ms-account</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -15,13 +15,29 @@
     </parent>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
+        <ms-core.version>1.0-SNAPSHOT</ms-core.version>
         <postgresql.version>42.1.1</postgresql.version>
         <druid.version>1.1.0</druid.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
+
+        <!-- 内部项目 begin -->
+        <dependency>
+            <groupId>com.hason.dtp</groupId>
+            <artifactId>ms-core</artifactId>
+            <version>${ms-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hason.dtp</groupId>
+            <artifactId>ms-message-api</artifactId>
+            <version>${ms-core.version}</version>
+        </dependency>
+
+        <!-- Spring begin -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -61,17 +77,6 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>${druid.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.5</version>
-        </dependency>
-        <!-- 令jackson支持JSR310 -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
 
     </dependencies>

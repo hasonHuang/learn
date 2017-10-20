@@ -1,9 +1,9 @@
 package com.hason.dtp.test.account.dao;
 
 import com.hason.dtp.account.dao.MessageRepository;
-import com.hason.dtp.account.entity.Message;
-import com.hason.dtp.account.entity.constant.MessageDataType;
-import com.hason.dtp.account.entity.constant.MessageStatus;
+import com.hason.dtp.message.entity.Message;
+import com.hason.dtp.message.entity.constant.MessageDataType;
+import com.hason.dtp.message.entity.constant.MessageStatus;
 import com.hason.dtp.test.account.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,8 @@
-package com.hason.dtp.account.entity;
+package com.hason.dtp.message.entity;
 
-import com.hason.dtp.account.entity.constant.MessageDataType;
-import com.hason.dtp.account.entity.constant.MessageStatus;
+
+import com.hason.dtp.message.entity.constant.MessageDataType;
+import com.hason.dtp.message.entity.constant.MessageStatus;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
