@@ -1,4 +1,4 @@
-package com.hason.dtp.account.dao;
+package com.hason.dtp.message.dao;
 
 import com.hason.dtp.message.entity.Message;
 import org.springframework.data.jpa.repository.JpaRepository;

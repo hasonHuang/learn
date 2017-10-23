@@ -1,6 +1,5 @@
-package com.hason.dtp.account.config;
+package com.hason.dtp.message.config;
 
-import com.hason.dtp.account.AccountApplication;
 import com.hason.dtp.core.utils.converter.BooleanAttributeConverter;
 import com.hason.dtp.message.entity.Message;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -14,6 +13,6 @@ import org.springframework.context.annotation.Configuration;
  * @date 2017/10/20
  */
 @Configuration
-@EntityScan(basePackageClasses = { AccountApplication.class, BooleanAttributeConverter.class})
+@EntityScan(basePackageClasses = { Message.class, BooleanAttributeConverter.class})
 public class JpaConfig {
 }

@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <ms-core.version>1.0-SNAPSHOT</ms-core.version>
         <jpa.version>1.0.0.Final</jpa.version>
         <spring.version>4.3.5.RELEASE</spring.version>
 
@@ -20,6 +21,14 @@
     </properties>
 
     <dependencies>
+        <!-- 内部项目 -->
+        <dependency>
+            <groupId>com.hason.dtp</groupId>
+            <artifactId>ms-core</artifactId>
+            <version>${ms-core.version}</version>
+        </dependency>
+        <!-- 内部项目 end -->
+
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>

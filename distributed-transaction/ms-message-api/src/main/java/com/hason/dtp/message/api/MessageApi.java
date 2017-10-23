@@ -1,6 +1,11 @@
 package com.hason.dtp.message.api;
 
 import com.hason.dtp.message.entity.Message;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 /**
  * 可靠消息接口
@@ -9,66 +14,68 @@ import com.hason.dtp.message.entity.Message;
  * @since 2.0
  * @date 2017/10/20
  */
-interface MessageApi {
+public interface MessageApi {
 
 
     /**
      * 预存储消息.
      */
-    int saveMessageWaitingConfirm(Message message);
-
+    @RequestMapping(value = "/messages", method = POST)
+    int saveMessageWaitingConfirm(@RequestBody Message message);
 
     /**
      * 确认并发送消息.
      */
-    void confirmAndSendMessage(String messageId);
-
+    @RequestMapping(value = "/messages/{messageId}/confirm-send", method = PATCH)
+    void confirmAndSendMessage(@PathVariable("messageId") String messageId);
 
     /**
      * 存储并发送消息.
      */
-    int saveAndSendMessage(Message message);
-
+    @RequestMapping(value = "/messages/send", method = POST)
+    int saveAndSendMessage(@RequestBody Message message);
 
     /**
      * 直接发送消息.
      */
-    void directSendMessage(Message message);
-
+    @RequestMapping(value = "/messages/direct-send", method = POST)
+    void directSendMessage(@RequestBody Message message);
 
     /**
      * 重发消息.
      */
-    void reSendMessage(Message message);
-
+    @RequestMapping(value = "/messages", method = PUT)
+    void reSendMessage(@RequestBody Message message);
 
     /**
      * 根据messageId重发某条消息.
      */
-    void reSendMessageByMessageId(String messageId);
-
+    @RequestMapping(value = "/messages/{messageId}/send", method = PUT)
+    void reSendMessageByMessageId(@PathVariable String messageId);
 
     /**
      * 将消息标记为死亡消息.
      */
-    void setMessageToAreadlyDead(String messageId);
-
+    @RequestMapping(value = "/messages/{messageId}/status/dead", method = PUT)
+    void setMessageToAreadlyDead(@PathVariable String messageId);
 
     /**
      * 根据消息ID获取消息
      */
-    Message getMessageByMessageId(String messageId);
+    @RequestMapping(value = "/messages/{messageId}", method = GET)
+    Message getMessageByMessageId(@PathVariable String messageId);
 
     /**
      * 根据消息ID删除消息
      */
-    void deleteMessageByMessageId(String messageId);
-
+    @RequestMapping(value = "/messages/{messageId}", method = DELETE)
+    void deleteMessageByMessageId(@PathVariable String messageId);
 
     /**
      * 重发某个消息队列中的全部已死亡的消息.
      */
-    void reSendAllDeadMessageByQueueName(String queueName, int batchSize);
+    @RequestMapping(value = "/queues/names/{queueName}", method = PUT)
+    void reSendAllDeadMessageByQueueName(@PathVariable String queueName, int batchSize);
 
     /**
      * 获取分页数据

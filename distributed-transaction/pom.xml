@@ -12,6 +12,7 @@
         <module>ms-discovery-eureka</module>
         <module>ms-core</module>
         <module>ms-message-api</module>
+        <module>ms-message</module>
     </modules>
     <packaging>pom</packaging>
 

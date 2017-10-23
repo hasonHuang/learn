@@ -1,24 +1,22 @@
-package com.hason.dtp.account;
+package com.hason.dtp.message;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 /**
- * 账户微服务
+ * 可靠消息服务程序入口
  *
  * @author Huanghs
  * @since 2.0
- * @date 2017/10/17
+ * @date 2017/10/23
  */
 @SpringBootApplication
 @EnableEurekaClient
-@EnableFeignClients
-public class AccountApplication {
+public class MessageApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AccountApplication.class, args);
+        SpringApplication.run(MessageApplication.class, args);
     }
 
 }
