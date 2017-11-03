@@ -9,8 +9,7 @@ import com.hason.dtp.message.entity.Message;
  * @since 2.0
  * @date 2017/10/20
  */
-interface MessageApi {
-
+public interface MessageApi {
 
     /**
      * 预存储消息.
@@ -63,7 +62,6 @@ interface MessageApi {
      * 根据消息ID删除消息
      */
     void deleteMessageByMessageId(String messageId);
-
 
     /**
      * 重发某个消息队列中的全部已死亡的消息.
