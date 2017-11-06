@@ -16,7 +16,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
  */
 public interface MessageApi {
 
-
     /**
      * 预存储消息.
      */
@@ -68,8 +67,12 @@ public interface MessageApi {
     /**
      * 根据消息ID删除消息
      */
+<<<<<<< HEAD
     @RequestMapping(value = "/messages/{messageId}", method = DELETE)
     void deleteMessageByMessageId(@PathVariable String messageId);
+=======
+    void deleteMessageByMessageId(String messageId);
+>>>>>>> 1404a839dd408f58dc4d3ca55256b261df757297
 
     /**
      * 重发某个消息队列中的全部已死亡的消息.
