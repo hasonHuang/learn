@@ -50,35 +50,31 @@ public interface MessageApi {
      * 根据messageId重发某条消息.
      */
     @RequestMapping(value = "/messages/{messageId}/send", method = PUT)
-    void reSendMessageByMessageId(@PathVariable String messageId);
+    void reSendMessageByMessageId(@PathVariable("messageId") String messageId);
 
     /**
      * 将消息标记为死亡消息.
      */
     @RequestMapping(value = "/messages/{messageId}/status/dead", method = PUT)
-    void setMessageToAreadlyDead(@PathVariable String messageId);
+    void setMessageToAreadlyDead(@PathVariable("messageId") String messageId);
 
     /**
      * 根据消息ID获取消息
      */
     @RequestMapping(value = "/messages/{messageId}", method = GET)
-    Message getMessageByMessageId(@PathVariable String messageId);
+    Message getMessageByMessageId(@PathVariable("messageId") String messageId);
 
     /**
      * 根据消息ID删除消息
      */
-<<<<<<< HEAD
     @RequestMapping(value = "/messages/{messageId}", method = DELETE)
-    void deleteMessageByMessageId(@PathVariable String messageId);
-=======
-    void deleteMessageByMessageId(String messageId);
->>>>>>> 1404a839dd408f58dc4d3ca55256b261df757297
+    void deleteMessageByMessageId(@PathVariable("messageId") String messageId);
 
     /**
      * 重发某个消息队列中的全部已死亡的消息.
      */
     @RequestMapping(value = "/queues/names/{queueName}", method = PUT)
-    void reSendAllDeadMessageByQueueName(@PathVariable String queueName, int batchSize);
+    void reSendAllDeadMessageByQueueName(@PathVariable("queueName") String queueName, int batchSize);
 
     /**
      * 获取分页数据
