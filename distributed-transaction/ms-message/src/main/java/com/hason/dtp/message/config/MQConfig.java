@@ -1,6 +1,8 @@
 package com.hason.dtp.message.config;
 
+import com.hason.dtp.message.config.properties.QueueMessageProperties;
 import org.springframework.amqp.core.Queue;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,26 +15,15 @@ import org.springframework.context.annotation.PropertySource;
  * @since 2.0
  * @date 2017/10/19
  */
-//@Configuration
+@Configuration
 //@ConfigurationProperties(prefix = "queue.message")
 //@PropertySource(value = "classpath:application.yml")
 public class MQConfig {
 
-    // 无需使用@Value
-//    @Value("${userPoint}")
-    private String userPoint;
-
     @Bean
-    public Queue aBoolean() {
+    public Queue exampleQueue(QueueMessageProperties properties) {
         // 创建一个持久化的队列
-        return new Queue(userPoint, true);
+        return new Queue(properties.getExampleQueue(), true);
     }
 
-    public String getUserPoint() {
-        return userPoint;
-    }
-
-    public void setUserPoint(String userPoint) {
-        this.userPoint = userPoint;
-    }
 }

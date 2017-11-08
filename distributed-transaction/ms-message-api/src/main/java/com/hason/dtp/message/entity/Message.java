@@ -30,6 +30,8 @@ public class Message {
 
     private Integer messageRetryCount = 0;
 
+    private String consumerQueue;
+
     private Boolean isDead;
 
     @Enumerated(EnumType.STRING)
@@ -89,6 +91,14 @@ public class Message {
 
     public void setMessageRetryCount(Integer messageRetryCount) {
         this.messageRetryCount = messageRetryCount;
+    }
+
+    public String getConsumerQueue() {
+        return consumerQueue;
+    }
+
+    public void setConsumerQueue(String consumerQueue) {
+        this.consumerQueue = consumerQueue;
     }
 
     public Boolean getDead() {

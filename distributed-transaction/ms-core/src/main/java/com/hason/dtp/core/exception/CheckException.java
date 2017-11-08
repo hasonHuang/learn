@@ -8,10 +8,6 @@ package com.hason.dtp.core.exception;
  * @date 2017/11/6
  */
 public class CheckException extends RuntimeException {
-    public CheckException() {
-        super();
-    }
-
     public CheckException(String message) {
         super(message);
     }

@@ -9,6 +9,11 @@ package com.hason.dtp.core.exception;
  */
 public class ErrorResult {
 
+    /** 状态码 */
+    private int code;
+    /** 消息 */
+    private String message;
+
     public ErrorResult() {
     }
 
@@ -16,11 +21,6 @@ public class ErrorResult {
         this.code = code;
         this.message = message;
     }
-
-    /** 状态码 */
-    private int code;
-    /** 消息 */
-    private String message;
 
     public int getCode() {
         return code;

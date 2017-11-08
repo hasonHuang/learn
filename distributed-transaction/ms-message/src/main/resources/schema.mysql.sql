@@ -7,6 +7,7 @@ create table message
    message_data_type    character varying(10) not null comment '消息数据类型：json, xml',
    message_body         text not null comment '消息内容',
    message_retry_count  smallint not null default 0 comment '消息重发次数',
+   consumer_queue       character varying(100) not null comment '消费队列',
    is_dead              smallint not null default 0 comment '是否死亡',
    status               character varying(20) not null comment '状态：待确认、待发送、已发送',
    version              integer default 0 comment '版本号',

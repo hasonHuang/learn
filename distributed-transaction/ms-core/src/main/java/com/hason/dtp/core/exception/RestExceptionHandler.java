@@ -2,6 +2,8 @@ package com.hason.dtp.core.exception;
 
 import com.hason.dtp.core.support.MediaTypes;
 import com.hason.dtp.core.utils.JsonMapper;
+import com.hason.dtp.core.utils.result.Result;
+import com.hason.dtp.core.utils.result.ResultBuilder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,14 +31,27 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     private JsonMapper jsonMapper = JsonMapper.INSTANCE;
 
     @ExceptionHandler(value = { ServiceException.class })
-    public final ResponseEntity<ErrorResult> handleServiceException(ServiceException ex, HttpServletRequest request) {
+    public final ResponseEntity<Result> handleServiceException(ServiceException ex, HttpServletRequest request) {
         // 注入servletRequest，用于出错时打印请求URL与来源地址
         logError(ex, request);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(MediaTypes.JSON_UTF_8));
-        ErrorResult result = new ErrorResult(ex.getCode().getCode(), ex.getMessage());
-        return new ResponseEntity<ErrorResult>(result, headers, HttpStatus.valueOf(ex.getCode().getHttpStatus()));
+        ErrorResult error = new ErrorResult(ex.getCode().getCode(), ex.getMessage());
+        Result<?> result = ResultBuilder.newInstance(error);
+        return new ResponseEntity<>(result, headers, HttpStatus.valueOf(ex.getCode().getHttpStatus()));
+    }
+
+    @ExceptionHandler(value = { CheckException.class })
+    public final ResponseEntity<Result> handleCheckException(CheckException ex, HttpServletRequest request) {
+        // 注入servletRequest，用于出错时打印请求URL与来源地址
+        logError(ex, request);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType(MediaTypes.JSON_UTF_8));
+        ErrorResult error = new ErrorResult(ErrorCode.BAD_REQUEST.getCode(), ex.getMessage());
+        Result<?> result = ResultBuilder.newInstance(error);
+        return new ResponseEntity<>(result, headers, HttpStatus.valueOf(ErrorCode.BAD_REQUEST.getHttpStatus()));
     }
 
     /**
@@ -52,7 +67,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             request.setAttribute("javax.servlet.error.exception", ex, WebRequest.SCOPE_REQUEST);
         }
 
-        return new ResponseEntity<Object>(body, headers, status);
+        return new ResponseEntity<>(body, headers, status);
     }
 
     public void logError(Exception ex) {
