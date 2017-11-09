@@ -1,5 +1,7 @@
 package com.hason.dtp.account.entity;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -33,6 +35,19 @@ public class User {
 
 //    @Column(name = "modified_time")
     private LocalDateTime modifiedTime;
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("username", username)
+                .append("password", password)
+                .append("balance", balance)
+                .append("point", point)
+                .append("createTime", createTime)
+                .append("modifiedTime", modifiedTime)
+                .toString();
+    }
 
     public Long getId() {
         return id;

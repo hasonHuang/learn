@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.hason.dtp</groupId>
-    <artifactId>ms-account</artifactId>
+    <artifactId>ms-account-web</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
@@ -18,8 +18,6 @@
         <ms-core.version>1.0-SNAPSHOT</ms-core.version>
         <ms-account.version>1.0-SNAPSHOT</ms-account.version>
         <ms-message.version>1.0-SNAPSHOT</ms-message.version>
-        <postgresql.version>42.1.1</postgresql.version>
-        <druid.version>1.1.0</druid.version>
         <jackson.version>2.8.7</jackson.version>
         <feign-httpclient.version>8.18.0</feign-httpclient.version>
 
@@ -53,7 +51,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -87,20 +85,6 @@
             <groupId>com.netflix.feign</groupId>
             <artifactId>feign-httpclient</artifactId>
             <version>${feign-httpclient.version}</version>
-        </dependency>
-
-        <!-- JDBC -->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${postgresql.version}</version>
-        </dependency>
-
-        <!-- 数据源，使用 Druid -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>${druid.version}</version>
         </dependency>
 
         <!-- for JsonMapper -->
@@ -151,5 +135,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>

@@ -5,7 +5,7 @@ server:
 logging:
   level:
     root: INFO
-    org.hibernate: DEBUG
+    org.hibernate: INFO
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
 debug: true
@@ -23,8 +23,9 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: org.postgresql.Driver
 
+    initialize: false             # 是否初始化
     platform: postgresql          # 指定数据源类型
-#    schema: classpath:schema.sql  # 指定建表脚本
+    schema: classpath:schema.sql  # 指定建表脚本
 #    data: classpath:data.sql      # 指定数据脚本
   jpa:
     show-sql: true
@@ -34,7 +35,8 @@ spring:
   # 配置 RabbitMQ 消息队列：队列配置见底部
   rabbitmq:
 #    host: 122.9.61.197
-    host: localhost
+#    host: localhost
+    host: 103.73.49.48
     port: 5672
     username: admin
     password: admin

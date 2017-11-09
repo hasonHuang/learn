@@ -13,6 +13,8 @@
         <module>ms-core</module>
         <module>ms-message-api</module>
         <module>ms-message</module>
+        <module>ms-account-api</module>
+        <module>ms-account-web</module>
     </modules>
     <packaging>pom</packaging>
 
