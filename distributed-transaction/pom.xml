@@ -15,6 +15,7 @@
         <module>ms-message</module>
         <module>ms-account-api</module>
         <module>ms-account-web</module>
+        <module>ms-message-consumer</module>
     </modules>
     <packaging>pom</packaging>
 

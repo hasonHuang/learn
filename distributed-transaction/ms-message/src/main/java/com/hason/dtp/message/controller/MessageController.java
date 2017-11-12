@@ -24,7 +24,7 @@ public class MessageController implements MessageApi {
     @Autowired
     private MessageService messageService;
 
-    @RequestMapping(value = "/messages", method = POST)
+    @RequestMapping(value = "/messages", method = POST, consumes = MediaTypes.JSON)
     @Override
     public Result<Message> saveMessageWaitingConfirm(@RequestBody Message message) {
         return ResultBuilder.newInstance(messageService.saveWaitingConfirm(message));
@@ -37,13 +37,13 @@ public class MessageController implements MessageApi {
         return ResultBuilder.newInstance();
     }
 
-    @RequestMapping(value = "/messages/send", method = POST)
+    @RequestMapping(value = "/messages/send", method = POST, consumes = MediaTypes.JSON)
     @Override
     public Result<Message> saveAndSendMessage(@RequestBody Message message) {
         return ResultBuilder.newInstance(messageService.saveAndSend(message));
     }
 
-    @RequestMapping(value = "/messages/direct-send", method = POST)
+    @RequestMapping(value = "/messages/direct-send", method = POST, consumes = MediaTypes.JSON)
     @Override
     public Result<?> directSendMessage(@RequestBody Message message) {
         messageService.directSend(message);

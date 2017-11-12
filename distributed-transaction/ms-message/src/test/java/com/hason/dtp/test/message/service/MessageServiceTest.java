@@ -32,7 +32,7 @@ public class MessageServiceTest extends BaseTest {
         message.setMessageId(UUID.randomUUID().toString());
         message.setMessageDataType(MessageDataType.JSON);
         message.setMessageBody(JsonMapper.INSTANCE.toJson("测试内容"));
-        message.setConsumerQueue(properties.getExampleQueue());
+        message.setConsumerQueue(properties.getUserPointQueue());
         messageService.saveWaitingConfirm(message);
         System.out.println("### saveAndWaiting: " + message);
     }
@@ -44,7 +44,7 @@ public class MessageServiceTest extends BaseTest {
         message.setMessageId(UUID.randomUUID().toString());
         message.setMessageDataType(MessageDataType.JSON);
         message.setMessageBody(JsonMapper.INSTANCE.toJson("测试内容"));
-        message.setConsumerQueue(properties.getExampleQueue());
+        message.setConsumerQueue(properties.getUserPointQueue());
         messageService.saveWaitingConfirm(message);
         messageService.confirmAndSend(message.getMessageId());
         System.out.println("### confirmAndSendMessage: " + message);

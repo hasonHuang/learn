@@ -3,6 +3,7 @@ package com.hason.dtp.account.controller;
 import com.hason.dtp.account.api.UserApi;
 import com.hason.dtp.account.entity.User;
 import com.hason.dtp.account.service.UserService;
+import com.hason.dtp.core.support.MediaTypes;
 import com.hason.dtp.core.utils.result.Result;
 import com.hason.dtp.core.utils.result.ResultBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,13 @@ public class UserController implements UserApi {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/users")
+    @PostMapping(value = "/users/register", consumes = MediaTypes.JSON)
+    @Override
+    public Result<User> register(@RequestBody User user) {
+        return ResultBuilder.newInstance(userService.register(user));
+    }
+
+    @PostMapping(value = "/users", consumes = MediaTypes.JSON)
     @Override
     public Result<User> save(@RequestBody User user) {
         return ResultBuilder.newInstance(userService.save(user));
@@ -33,4 +40,9 @@ public class UserController implements UserApi {
         return ResultBuilder.newInstance(userService.get(userId));
     }
 
+    @PostMapping(value = "/users/{userId}/points", consumes = MediaTypes.JSON)
+    @Override
+    public Result<?> addRegistPoint(@PathVariable Long userId) {
+        return ResultBuilder.newInstance(userService.addRegistPoint(userId, 10));
+    }
 }

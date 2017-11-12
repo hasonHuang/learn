@@ -19,6 +19,10 @@ public class Result<T> implements Serializable {
     /** 错误消息 */
     private ErrorResult error;
 
+    public boolean success() {
+        return error == null;
+    }
+
     public T getData() {
         return data;
     }

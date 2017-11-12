@@ -1,10 +1,12 @@
 package com.hason.dtp.account.api;
 
 import com.hason.dtp.account.entity.User;
+import com.hason.dtp.core.support.MediaTypes;
 import com.hason.dtp.core.utils.result.Result;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * 用户微服务接口
@@ -16,12 +18,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface UserApi {
 
     /**
+     * 注册用户
+     *
+     * @param user 用户
+     * @return {@code Result<User>}
+     */
+    @RequestMapping(value = "/users/register",
+            method = RequestMethod.POST, consumes = MediaTypes.JSON)
+    Result<User> register(@RequestBody User user);
+
+    /**
      * 保存用户
      *
      * @param user 用户
      * @return {@code Result<User>}
      */
-    @RequestMapping(value = "/users")
+    @RequestMapping(value = "/users",
+            method = RequestMethod.POST, consumes = MediaTypes.JSON)
     Result<User> save(@RequestBody User user);
 
     /**
@@ -32,5 +45,15 @@ public interface UserApi {
      */
     @RequestMapping(value = "/users/{userId}")
     Result<User> get(@PathVariable("userId") Long userId);
+
+    /**
+     * (为了简单示范，积分操作仍写在账户项目) 注册成功后，赠送积分
+     *
+     * @param userId 用户ID
+     * @return {@code Result<?>}
+     */
+    @RequestMapping(value = "/users/{userId}/points",
+            method = RequestMethod.POST, consumes = MediaTypes.JSON)
+    Result<?> addRegistPoint(@PathVariable("userId") Long userId);
 
 }

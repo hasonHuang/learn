@@ -12,6 +12,14 @@ import com.hason.dtp.account.entity.User;
 public interface UserService {
 
     /**
+     * 注册用户
+     *
+     * @param user 用户
+     * @return User
+     */
+    User register(User user);
+
+    /**
      * 保存用户
      *
      * @param user 用户
@@ -26,5 +34,14 @@ public interface UserService {
      * @return User
      */
     User get(Long userId);
+
+    /**
+     * （幂等）为新注册用户增加积分
+     *
+     * @param userId 用户ID
+     * @param add 增加的积分
+     * @return User
+     */
+    User addRegistPoint(Long userId, int add);
 
 }

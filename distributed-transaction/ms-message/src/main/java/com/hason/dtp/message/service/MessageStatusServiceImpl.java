@@ -18,7 +18,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * （消息状态确认子系统）消息状态服务实现类
+ * 消息状态服务实现类
  *
  * @author Huanghs
  * @since 2.0
@@ -32,7 +32,9 @@ public class MessageStatusServiceImpl implements MessageStatusService {
     @Autowired
     private QueueMessageProperties properties;
     @Autowired
-    private List<StatusHandlerService> statusHandlerServices;
+    private List<StatusConfirmHandlerService> statusConfirmHandlerServices;
+    @Autowired
+    private List<RecoverHandlerService> recoverHandlerServices;
 
     @Autowired
     private MessageRepository messageRepository;
@@ -56,25 +58,59 @@ public class MessageStatusServiceImpl implements MessageStatusService {
         }
     }
 
+    @Override
+    public void handleSendingTimeout() {
+        // 取出所有发送中、已超时、未死亡的消息
+        int pageNum = 1;
+        LocalDateTime expireTime = getLastExpireTime();
+        while (pageNum <= PAGE_PER_HANDLE) {
+            Pageable pageable = new PageRequest(pageNum++, PAGE_SIZE);
+            Page<Message> page = messageRepository.findByStatusAndCreateTime(
+                    MessageStatus.SENDING, Boolean.FALSE, expireTime, pageable);
+            handleSendingTimeout(page.getContent());
+        }
+    }
+
+    /**
+     * 处理待确认超时的消息
+     *
+     * @param messages 消息列表
+     */
     private void handleWaitConfirmTimeout(Collection<Message> messages) {
         for (Message message : messages) {
             // 单条消息处理（目前该状态的消息全部是积分队列，如果后期有业务扩充,需做队列判断，做对应的业务处理）
-            for (StatusHandlerService handlerService : statusHandlerServices) {
-                try {
-                    if (handlerService.canHandle(message)) {
+            for (StatusConfirmHandlerService handlerService : statusConfirmHandlerServices) {
+                if (handlerService.canHandle(message)) {
+                    try {
                         handlerService.handle(message);
-                        break;
+                    } catch (ServiceException e) {
+                        LOGGER.warn("消息状态确认处理异常，消息表ID：" + message.getId());
                     }
-                } catch (ServiceException e) {
-                    LOGGER.warn("消息处理异常，消息表ID：" + message.getId());
+                    break;
                 }
             }
         }
     }
 
-    @Override
-    public void handleSendingTimeout() {
-
+    /**
+     * 处理发送中超时（即消费超时）的消息
+     *
+     * @param messages 消息列表
+     */
+    private void handleSendingTimeout(Collection<Message> messages) {
+        for (Message message : messages) {
+            // 单条消息处理
+            for (RecoverHandlerService handlerService : recoverHandlerServices) {
+                if (handlerService.canHandle(message)) {
+                    try {
+                        handlerService.handle(message);
+                    } catch (ServiceException e) {
+                        LOGGER.warn("消息恢复处理异常，消息表ID：" + message.getId());
+                    }
+                    break;
+                }
+            }
+        }
     }
 
     /**

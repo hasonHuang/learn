@@ -1,4 +1,4 @@
-package com.hason.dtp.message.config.properties;
+package com.hason.dtp.message.consumer.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

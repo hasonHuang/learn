@@ -1,6 +1,8 @@
 package com.hason.dtp.account.web.controller;
 
 import com.hason.dtp.account.entity.User;
+import com.hason.dtp.account.web.service.client.UserServiceClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +19,9 @@ import java.math.BigDecimal;
  */
 @Controller
 public class UserController {
+
+    @Autowired
+    private UserServiceClient userServiceClient;
 
     /**
      * 注册页面
@@ -37,8 +42,7 @@ public class UserController {
     @PostMapping(value = "/register")
     @ResponseBody
     public Object register(User user) {
-        user.setBalance(BigDecimal.ZERO);
-        return user;
+        return userServiceClient.register(user);
     }
 
 }

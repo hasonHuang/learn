@@ -5,7 +5,7 @@ import com.hason.dtp.message.entity.Message;
 import org.springframework.core.Ordered;
 
 /**
- * 消息状态处理器
+ * （消息状态确认子系统）消息状态确认处理器
  *
  * <br>
  *
@@ -15,7 +15,7 @@ import org.springframework.core.Ordered;
  * @since 2.0
  * @date 2017/11/9
  */
-public interface StatusHandlerService extends Ordered {
+public interface StatusConfirmHandlerService extends Ordered {
 
     /**
      * 能否处理该消息

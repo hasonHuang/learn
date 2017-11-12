@@ -21,6 +21,7 @@ import java.util.UUID;
 
 import static com.hason.dtp.core.utils.CheckUtil.notEmpty;
 import static com.hason.dtp.core.utils.CheckUtil.notNull;
+import static com.hason.dtp.message.util.MessageUtils.canRetry;
 
 /**
  * 消息实现类
@@ -211,7 +212,7 @@ public class MessageServiceImpl implements MessageService {
      * @return boolean
      */
     private boolean isDead(Message message) {
-        return message.getMessageRetryCount() >= properties.getMaxRetry();
+        return canRetry(properties.getRetry().getMax(), message.getMessageRetryCount() + 1);
     }
 
     private String id() {

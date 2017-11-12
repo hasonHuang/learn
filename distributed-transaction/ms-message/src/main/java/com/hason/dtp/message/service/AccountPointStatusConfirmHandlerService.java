@@ -1,7 +1,6 @@
 package com.hason.dtp.message.service;
 
 import com.hason.dtp.account.entity.User;
-import com.hason.dtp.core.exception.CheckException;
 import com.hason.dtp.core.exception.ErrorCode;
 import com.hason.dtp.core.exception.ServiceException;
 import com.hason.dtp.core.utils.result.Result;
@@ -15,11 +14,11 @@ import org.springframework.core.Ordered;
 import org.springframework.stereotype.Service;
 
 /**
- * 账户积分的消息状态处理器
+ * （消息状态确认子系统）账户积分的消息状态确认处理器
  *
  * <p>
  *     模块功能：用户注册后会发送一条积分消息，积分系统接收到消息后，为用户增加积分
- *     该处理器的功能： 积分消息会因为各种原因无法正确送达积分系统，该处理器专门处理这些异常消息确保消息可达性
+ *     该处理器的功能： 积分消息会因为各种原因无法确认并发送消息，该处理器专门处理这些异常消息确保消息可达性
  * </p>
  *
  * @author Huanghs
@@ -27,9 +26,9 @@ import org.springframework.stereotype.Service;
  * @date 2017/11/9
  */
 @Service
-public class AccountPointStatusHandlerService implements StatusHandlerService {
+public class AccountPointStatusConfirmHandlerService implements StatusConfirmHandlerService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AccountPointStatusHandlerService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AccountPointStatusConfirmHandlerService.class);
 
     @Autowired
     private UserServiceClient userServiceClient;
@@ -41,7 +40,7 @@ public class AccountPointStatusHandlerService implements StatusHandlerService {
 
     @Override
     public boolean canHandle(Message message) {
-        return properties.getExampleQueue().equals(message.getConsumerQueue());
+        return properties.getUserPointQueue().equals(message.getConsumerQueue());
     }
 
     @Override

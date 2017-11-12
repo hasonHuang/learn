@@ -38,7 +38,7 @@ public class MessageRepositoryTest extends BaseTest {
         message.setMessageId(UUID.randomUUID().toString());
         message.setMessageDataType(MessageDataType.JSON);
         message.setMessageBody("消息内容");
-        message.setConsumerQueue(properties.getExampleQueue());
+        message.setConsumerQueue(properties.getUserPointQueue());
         message.setDead(Boolean.FALSE);
         message.setStatus(MessageStatus.SENDED);
         message.setCreateTime(LocalDateTime.now());

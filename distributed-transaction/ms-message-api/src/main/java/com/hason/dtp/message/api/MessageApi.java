@@ -3,10 +3,7 @@ package com.hason.dtp.message.api;
 import com.hason.dtp.core.support.MediaTypes;
 import com.hason.dtp.core.utils.result.Result;
 import com.hason.dtp.message.entity.Message;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
@@ -22,7 +19,8 @@ public interface MessageApi {
     /**
      * 预存储消息.
      */
-    @RequestMapping(value = "/messages", method = POST)
+    @RequestMapping(value = "/messages",
+            method = RequestMethod.POST, consumes = MediaTypes.JSON)
     Result<Message> saveMessageWaitingConfirm(@RequestBody Message message);
 
     /**
@@ -34,13 +32,15 @@ public interface MessageApi {
     /**
      * 存储并发送消息.
      */
-    @RequestMapping(value = "/messages/send", method = POST)
+    @RequestMapping(value = "/messages/send",
+            method = RequestMethod.POST, consumes = MediaTypes.JSON)
     Result<Message> saveAndSendMessage(@RequestBody Message message);
 
     /**
      * 直接发送消息.
      */
-    @RequestMapping(value = "/messages/direct-send", method = POST)
+    @RequestMapping(value = "/messages/direct-send",
+            method = RequestMethod.POST, consumes = MediaTypes.JSON)
     Result<?> directSendMessage(@RequestBody Message message);
 
     /**
