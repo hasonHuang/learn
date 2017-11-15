@@ -51,7 +51,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         headers.setContentType(MediaType.parseMediaType(MediaTypes.JSON_UTF_8));
         ErrorResult error = new ErrorResult(ErrorCode.BAD_REQUEST.getCode(), ex.getMessage());
         Result<?> result = ResultBuilder.newInstance(error);
-        return new ResponseEntity<>(result, headers, HttpStatus.valueOf(ErrorCode.BAD_REQUEST.getHttpStatus()));
+        return new ResponseEntity<>(result, headers, HttpStatus.valueOf(ErrorCode.BAD_PARAM.getHttpStatus()));
     }
 
     /**

@@ -152,7 +152,7 @@ public class MessageServiceImpl implements MessageService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void deleteByMessageId(String messageId) throws CheckException, ServiceException {
-        messageRepository.delete(messageId);
+        messageRepository.deleteByMessageId(messageId);
     }
 
     @Transactional(rollbackFor = Exception.class)

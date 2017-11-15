@@ -40,9 +40,4 @@ public class UserController implements UserApi {
         return ResultBuilder.newInstance(userService.get(userId));
     }
 
-    @PostMapping(value = "/users/{userId}/points", consumes = MediaTypes.JSON)
-    @Override
-    public Result<?> addRegistPoint(@PathVariable Long userId) {
-        return ResultBuilder.newInstance(userService.addRegistPoint(userId, 10));
-    }
 }

@@ -35,13 +35,4 @@ public interface UserService {
      */
     User get(Long userId);
 
-    /**
-     * （幂等）为新注册用户增加积分
-     *
-     * @param userId 用户ID
-     * @param add 增加的积分
-     * @return User
-     */
-    User addRegistPoint(Long userId, int add);
-
 }

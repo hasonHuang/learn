@@ -54,4 +54,10 @@ public interface MessageRepository extends JpaRepository<Message, String>, JpaSp
             @Param("createTimeBefore") LocalDateTime createTimeBefore,
             Pageable pageable);
 
+    /**
+     * 根据messageId, 删除记录
+     *
+     * @param messageId 消息id
+     */
+    void deleteByMessageId(String messageId);
 }

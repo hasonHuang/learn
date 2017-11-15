@@ -46,14 +46,4 @@ public interface UserApi {
     @RequestMapping(value = "/users/{userId}")
     Result<User> get(@PathVariable("userId") Long userId);
 
-    /**
-     * (为了简单示范，积分操作仍写在账户项目) 注册成功后，赠送积分
-     *
-     * @param userId 用户ID
-     * @return {@code Result<?>}
-     */
-    @RequestMapping(value = "/users/{userId}/points",
-            method = RequestMethod.POST, consumes = MediaTypes.JSON)
-    Result<?> addRegistPoint(@PathVariable("userId") Long userId);
-
 }

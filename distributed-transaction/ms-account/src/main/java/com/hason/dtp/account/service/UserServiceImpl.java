@@ -1,8 +1,5 @@
 package com.hason.dtp.account.service;
 
-import static com.hason.dtp.core.utils.CheckUtil.notNull;
-import static com.hason.dtp.core.utils.CheckUtil.notFalse;
-
 import com.hason.dtp.account.config.properties.QueueMessageProperties;
 import com.hason.dtp.account.dao.UserRepository;
 import com.hason.dtp.account.entity.User;
@@ -21,6 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
+
+import static com.hason.dtp.core.utils.CheckUtil.notFalse;
+import static com.hason.dtp.core.utils.CheckUtil.notNull;
 
 /**
  * 用户业务实现类
@@ -104,19 +104,4 @@ public class UserServiceImpl implements UserService {
         return userRepository.findOne(userId);
     }
 
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public User addRegistPoint(Long userId, int add) {
-        User user = userRepository.findOne(userId);
-        notNull(user, "arg.illegal", "用户ID");
-
-        // （实现幂等性）判断积分是否已经增加过，如果是直接返回。
-        if (user.getPoint() > 0) {
-            return user;
-        }
-
-        user.setPoint(user.getPoint() + add);
-        userRepository.save(user);
-        return user;
-    }
 }

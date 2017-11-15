@@ -1,6 +1,7 @@
 package com.hason.dtp.message.consumer.config;
 
 import com.hason.dtp.message.consumer.config.properties.QueueMessageProperties;
+import org.springframework.amqp.core.AcknowledgeMode;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
@@ -40,6 +41,8 @@ public class MQConfig {
 //        SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
 //        factory.setConnectionFactory(connectionFactory);
 //        factory.setMessageConverter(new Jackson2JsonMessageConverter());
+//        // 设置确认模式为自动确认
+//        factory.setAcknowledgeMode(AcknowledgeMode.AUTO);
 //        return factory;
 //    }
 }

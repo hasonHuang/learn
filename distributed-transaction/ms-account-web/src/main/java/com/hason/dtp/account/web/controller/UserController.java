@@ -2,6 +2,7 @@ package com.hason.dtp.account.web.controller;
 
 import com.hason.dtp.account.entity.User;
 import com.hason.dtp.account.web.service.client.UserServiceClient;
+import com.hason.dtp.core.utils.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +42,7 @@ public class UserController {
      */
     @PostMapping(value = "/register")
     @ResponseBody
-    public Object register(User user) {
+    public Result<User> register(User user) {
         return userServiceClient.register(user);
     }
 
