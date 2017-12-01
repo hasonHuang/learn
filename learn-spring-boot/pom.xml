@@ -16,6 +16,7 @@
         <module>starter-autoconfig</module>
         <module>starter-service-hello</module>
         <module>starter-autoconfig-consumer</module>
+        <module>server-send-event</module>
     </modules>
 
 </project>
