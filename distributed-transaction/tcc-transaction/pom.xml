@@ -4,18 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.hason</groupId>
-    <artifactId>learn</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>com.hason.dtp</groupId>
+    <artifactId>tcc-transaction</artifactId>
     <packaging>pom</packaging>
-    <name>Hason Learn :: Project</name>
-
+    <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>learn-examples</module>
-        <module>learn-spring-cloud</module>
-        <module>learn-spring-boot</module>
-        <module>distributed-transaction</module>
-        <module>tcc-transaction</module>
+        <module>tcc-account-api</module>
+        <module>tcc-capital-api</module>
+        <module>tcc-point-api</module>
+        <module>tcc-order-api</module>
     </modules>
+
 
 </project>

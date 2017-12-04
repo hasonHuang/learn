@@ -18,6 +18,7 @@
         <module>ms-message-consumer</module>
         <module>ms-account-point-api</module>
         <module>ms-account-point</module>
+        <module>tcc-transaction</module>
     </modules>
     <packaging>pom</packaging>
 
