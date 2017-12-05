@@ -5,14 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.hason.dtp</groupId>
-    <artifactId>tcc-point-api</artifactId>
+    <artifactId>tcc-integral-api</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>TCC :: Point System API</name>
+    <name>TCC :: Integral System API</name>
 
     <properties>
         <ms-core.version>1.0-SNAPSHOT</ms-core.version>
-        <ms-account-api.version>1.0-SNAPSHOT</ms-account-api.version>
         <tcc.version>1.1.5</tcc.version>
         <jpa.version>1.0.0.Final</jpa.version>
         <spring.version>4.3.5.RELEASE</spring.version>
@@ -30,11 +29,6 @@
             <groupId>com.hason.dtp</groupId>
             <artifactId>ms-core</artifactId>
             <version>${ms-core.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.hason.dtp</groupId>
-            <artifactId>ms-account-api</artifactId>
-            <version>${ms-account-api.version}</version>
         </dependency>
         <!-- 内部项目 end -->
 
@@ -59,5 +53,6 @@
             <optional>true</optional>
         </dependency>
     </dependencies>
+
 
 </project>

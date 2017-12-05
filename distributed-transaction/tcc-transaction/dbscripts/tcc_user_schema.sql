@@ -1,9 +1,11 @@
 
 CREATE DATABASE "tcc_user";
 
+create sequence user_id_seq;
+
 CREATE TABLE public."user"
 (
-  id bigserial NOT NULL , -- 用户ID
+  id bigint NOT NULL DEFAULT nextval('user_id_seq'::regclass), -- 用户ID
   username character varying(20) NOT NULL DEFAULT NULL::character varying, -- 用户名
   password character varying(32) NOT NULL DEFAULT NULL::character varying, -- 用户密码
   create_time timestamp with time zone NOT NULL DEFAULT now(), -- 创建时间

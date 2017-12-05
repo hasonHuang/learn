@@ -1,9 +1,11 @@
 
 create database "tcc_capital";
 
+create sequence capital_id_seq;
+
 CREATE TABLE public.capital_account
 (
-   id bigserial NOT NULL,
+  id bigint NOT NULL DEFAULT nextval('capital_id_seq'::regclass),
    balance_amount numeric(12,2) NOT NULL DEFAULT 0,
    user_id bigint NOT NULL,
   CONSTRAINT capital_pkey PRIMARY KEY (id),

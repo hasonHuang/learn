@@ -11,8 +11,10 @@
     <modules>
         <module>tcc-account-api</module>
         <module>tcc-capital-api</module>
-        <module>tcc-point-api</module>
         <module>tcc-order-api</module>
+        <module>tcc-point-api</module>
+        <module>tcc-integral-api</module>
+        <module>tcc-account</module>
     </modules>
 
 

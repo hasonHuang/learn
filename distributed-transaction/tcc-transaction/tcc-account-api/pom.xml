@@ -29,11 +29,6 @@
             <artifactId>ms-core</artifactId>
             <version>${ms-core.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.hason.dtp</groupId>
-            <artifactId>ms-account-api</artifactId>
-            <version>${ms-account-api.version}</version>
-        </dependency>
         <!-- 内部项目 end -->
 
         <!-- TCC 框架核心包 -->

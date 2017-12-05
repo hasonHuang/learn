@@ -1,9 +1,11 @@
 
 create database tcc_order;
 
+create sequence order_id_seq;
+
 CREATE TABLE public.order
 (
-  id bigserial NOT NULL  , -- 订单号
+  id bigint NOT NULL DEFAULT nextval('order_id_seq'::regclass), -- 订单号
   user_id bigint NOT NULL, -- 用户ID
   amount numeric(12,2) NOT NULL, -- 金额
   status varchar(20) NOT NULL, -- 状态

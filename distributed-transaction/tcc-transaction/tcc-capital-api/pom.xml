@@ -12,7 +12,7 @@
 
     <properties>
         <ms-core.version>1.0-SNAPSHOT</ms-core.version>
-        <ms-account-api.version>1.0-SNAPSHOT</ms-account-api.version>
+        <tcc-account-api>1.0-SNAPSHOT</tcc-account-api>
         <tcc.version>1.1.5</tcc.version>
         <jpa.version>1.0.0.Final</jpa.version>
         <spring.version>4.3.5.RELEASE</spring.version>
@@ -33,8 +33,8 @@
         </dependency>
         <dependency>
             <groupId>com.hason.dtp</groupId>
-            <artifactId>ms-account-api</artifactId>
-            <version>${ms-account-api.version}</version>
+            <artifactId>tcc-account-api</artifactId>
+            <version>${tcc-account-api}</version>
         </dependency>
         <!-- 内部项目 end -->
 
