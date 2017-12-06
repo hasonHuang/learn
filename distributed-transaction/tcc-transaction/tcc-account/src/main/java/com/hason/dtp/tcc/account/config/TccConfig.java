@@ -1,4 +1,4 @@
-package com.hason.dtp.tcc.account;
+package com.hason.dtp.tcc.account.config;
 
 import org.mengyun.tcctransaction.TransactionRepository;
 import org.mengyun.tcctransaction.spring.repository.SpringJdbcTransactionRepository;
@@ -28,6 +28,8 @@ public class TccConfig {
 
         SpringJdbcTransactionRepository repository = new SpringJdbcTransactionRepository();
         repository.setDataSource(dataSource);
+        repository.setDomain("ACCOUNT");
+        repository.setTbSuffix("_ACCOUNT");
         return repository;
     }
 

@@ -15,7 +15,6 @@
         <module>learn-spring-cloud</module>
         <module>learn-spring-boot</module>
         <module>distributed-transaction</module>
-        <module>tcc-transaction</module>
     </modules>
 
 </project>
