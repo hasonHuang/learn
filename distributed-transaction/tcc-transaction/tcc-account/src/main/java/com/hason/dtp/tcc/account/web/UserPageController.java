@@ -1,7 +1,7 @@
 package com.hason.dtp.tcc.account.web;
 
-import com.hason.dtp.tcc.account.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserPageController {
 
     @Autowired
-    private UserService userService;
+    private ApplicationContext applicationContext;
 
     /**
      * 注册页面

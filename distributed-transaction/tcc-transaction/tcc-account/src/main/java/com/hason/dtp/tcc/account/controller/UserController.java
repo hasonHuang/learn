@@ -22,9 +22,8 @@ public class UserController implements UserApi {
     @Autowired
     private UserService userService;
 
-    @PostMapping(value = "/users/register", consumes = MediaTypes.JSON)
-    @Override
-    public Result<User> register(@RequestBody User user) {
+    @PostMapping(value = "/users/register")
+    public Result<User> register(User user) {
         return ResultBuilder.newInstance(userService.register(user));
     }
 

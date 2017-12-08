@@ -1,19 +1,17 @@
 package com.hason.dtp.tcc.account.service;
 
-import com.hason.dtp.core.exception.ErrorCode;
-import com.hason.dtp.core.exception.ServiceException;
-import com.hason.dtp.core.utils.JsonMapper;
-import com.hason.dtp.core.utils.result.Result;
+import com.hason.dtp.core.support.tcc.TransactionEntity;
 import com.hason.dtp.tcc.account.dao.UserRepository;
 import com.hason.dtp.tcc.account.entity.User;
+import com.hason.dtp.tcc.account.service.proxy.PointServiceClientProxy;
 import org.mengyun.tcctransaction.Compensable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import static com.hason.dtp.core.utils.CheckUtil.notFalse;
 import static com.hason.dtp.core.utils.CheckUtil.notNull;
@@ -27,6 +25,11 @@ import static com.hason.dtp.core.utils.CheckUtil.notNull;
  */
 @Service
 public class UserServiceImpl implements UserService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+
+    @Autowired
+    private PointServiceClientProxy pointServiceClientProxy;
 
     @Autowired
     private UserRepository userRepository;
@@ -46,20 +49,32 @@ public class UserServiceImpl implements UserService {
         user = save(user);
 
         // 注册积分账户
+        pointServiceClientProxy.create(null, user);
 
         // 注册资金账户
 
         return user;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public User confirmRegister(User user) {
-        return null;
+        LOGGER.debug("开始确认用户[{}]注册信息", user.getUsername());
+        // 实现幂等性
+        // 已经插入记录了，确认方法无需做任何事情
+        return user;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public User cancelRegister(User user) {
-        return null;
+        LOGGER.debug("开始取消用户[{}]注册信息", user.getUsername());
+        // 实现幂等性
+        User exist = userRepository.findByUsername(user.getUsername());
+        if (exist != null) {
+            userRepository.delete(user.getId());
+        }
+        return exist;
     }
 
     @Transactional(rollbackFor = Exception.class)

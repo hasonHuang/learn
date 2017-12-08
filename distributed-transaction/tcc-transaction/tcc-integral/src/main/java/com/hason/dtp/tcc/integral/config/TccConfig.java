@@ -1,6 +1,7 @@
-package com.hason.dtp.tcc.account.config;
+package com.hason.dtp.tcc.integral.config;
 
-import com.hason.dtp.tcc.account.config.properties.TccDataSourceProperties;
+import com.alibaba.druid.pool.DruidDataSource;
+import com.hason.dtp.tcc.integral.config.properties.TccDataSourceProperties;
 import org.mengyun.tcctransaction.TransactionRepository;
 import org.mengyun.tcctransaction.serializer.KryoTransactionSerializer;
 import org.mengyun.tcctransaction.serializer.ObjectSerializer;
@@ -9,9 +10,10 @@ import org.mengyun.tcctransaction.spring.support.TccApplicationContext;
 import org.mengyun.tcctransaction.support.BeanFactory;
 import org.mengyun.tcctransaction.support.BeanFactoryAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
@@ -26,7 +28,6 @@ import javax.sql.DataSource;
  */
 @Configuration
 @ImportResource(locations = "classpath:tcc-transaction.xml")
-@ComponentScan(basePackageClasses = {BeanFactory.class, TccApplicationContext.class})
 public class TccConfig {
 
     @Autowired
@@ -38,14 +39,13 @@ public class TccConfig {
 
         SpringJdbcTransactionRepository repository = new SpringJdbcTransactionRepository();
         repository.setDataSource(tccDataSource());
-        repository.setDomain("ACCOUNT");
-        repository.setTbSuffix("_ACCOUNT");
+        repository.setDomain("POINT");
+        repository.setTbSuffix("_POINT");
         repository.setSerializer(serializer);
         return repository;
     }
 
     // 使用 @Bean，避免 JPA 使用了 tcc 的数据源
-//    @Bean
     public DataSource tccDataSource() {
         return DataSourceBuilder.create()
                 .type(properties.getType())
@@ -63,7 +63,7 @@ public class TccConfig {
 
     // 源码 TccBeanPostProcessor 无法注入 BeanFactory, 手动配置注入
     @Bean
-    public Integer beanFactory(BeanFactory beanFactory) {
+    public Integer beanFactory(TccApplicationContext beanFactory) {
         BeanFactoryAdapter.setBeanFactory(beanFactory);
         return 1;
     }

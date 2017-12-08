@@ -1,13 +1,13 @@
 server:
-  port: 9000
+  port: 9010
 
 spring:
   application:
-    name: tcc-account
+    name: tcc-integral
 
   # 数据库配置
   datasource:
-    url: jdbc:postgresql://localhost:5432/tcc_user
+    url: jdbc:postgresql://localhost:5432/tcc_point
     username: postgres
     password: 123456
     # 使用druid数据源
@@ -32,13 +32,6 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
-
-  # 配置 RabbitMQ 消息队列：队列配置见底部
-#  rabbitmq:
-#    host: 122.9.61.197
-#    port: 5672
-#    username: admin
-#    password: admin
 
 # 配置服务注册
 eureka:

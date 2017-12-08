@@ -15,6 +15,7 @@
         <module>tcc-point-api</module>
         <module>tcc-integral-api</module>
         <module>tcc-account</module>
+        <module>tcc-integral</module>
     </modules>
 
 

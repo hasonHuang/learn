@@ -12,9 +12,11 @@
 
     <properties>
         <ms-core.version>1.0-SNAPSHOT</ms-core.version>
+        <ms-accout-api.version>1.0-SNAPSHOT</ms-accout-api.version>
         <tcc.version>1.1.5</tcc.version>
         <jpa.version>1.0.0.Final</jpa.version>
         <spring.version>4.3.5.RELEASE</spring.version>
+        <feign-form.version>3.0.3</feign-form.version>
 
         <!-- Plugin的属性 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,6 +32,11 @@
             <artifactId>ms-core</artifactId>
             <version>${ms-core.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.hason.dtp</groupId>
+            <artifactId>tcc-account-api</artifactId>
+            <version>${ms-accout-api.version}</version>
+        </dependency>
         <!-- 内部项目 end -->
 
         <!-- TCC 框架核心包 -->
@@ -39,6 +46,23 @@
             <version>${tcc.version}</version>
         </dependency>
         <!-- TCC 框架核心包 -->
+
+        <!-- Feign 支持表单提交 -->
+        <dependency>
+            <groupId>io.github.openfeign.form</groupId>
+            <artifactId>feign-form</artifactId>
+            <version>${feign-form.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign.form</groupId>
+            <artifactId>feign-form-spring</artifactId>
+            <version>${feign-form.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-core</artifactId>
+            <version>9.3.1</version>
+        </dependency>
 
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>

@@ -18,16 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface UserApi {
 
     /**
-     * 注册用户
-     *
-     * @param user 用户
-     * @return {@code Result<User>}
-     */
-    @RequestMapping(value = "/users/register",
-            method = RequestMethod.POST, consumes = MediaTypes.JSON)
-    Result<User> register(@RequestBody User user);
-
-    /**
      * 保存用户
      *
      * @param user 用户
