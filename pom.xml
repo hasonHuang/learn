@@ -14,7 +14,6 @@
         <module>learn-examples</module>
         <module>learn-spring-cloud</module>
         <module>learn-spring-boot</module>
-        <module>distributed-transaction</module>
     </modules>
 
 </project>

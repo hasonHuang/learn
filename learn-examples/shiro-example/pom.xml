@@ -25,6 +25,7 @@
         <jedis.version>2.9.0</jedis.version>
         <beetl.version>2.7.12</beetl.version>
         <orika.version>1.5.0</orika.version>
+        <jackson.version>2.9.7</jackson.version>
         <common-lang3.version>3.5</common-lang3.version>
         <ehcache.version>2.10.4</ehcache.version>
         <oauth2.version>1.0.2</oauth2.version>
@@ -94,18 +95,22 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-joda</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-parameter-names</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
         <!--mybatis-->
