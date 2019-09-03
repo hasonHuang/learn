@@ -17,7 +17,7 @@
         <module>starter-service-hello</module>
         <module>starter-autoconfig-consumer</module>
         <module>server-send-event</module>
-        <module>my-rest-util</module>
+        <module>spring-cache</module>
     </modules>
 
 </project>
