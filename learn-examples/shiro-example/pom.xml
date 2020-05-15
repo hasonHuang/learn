@@ -25,7 +25,7 @@
         <jedis.version>2.9.0</jedis.version>
         <beetl.version>2.7.12</beetl.version>
         <orika.version>1.5.0</orika.version>
-        <jackson.version>2.9.7</jackson.version>
+        <jackson.version>2.11.0</jackson.version>
         <common-lang3.version>3.5</common-lang3.version>
         <ehcache.version>2.10.4</ehcache.version>
         <oauth2.version>1.0.2</oauth2.version>
