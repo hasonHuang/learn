@@ -29,7 +29,7 @@
         <common-lang3.version>3.5</common-lang3.version>
         <ehcache.version>2.10.4</ehcache.version>
         <oauth2.version>1.0.2</oauth2.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
