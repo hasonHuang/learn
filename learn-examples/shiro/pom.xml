@@ -21,7 +21,7 @@
         <spring-boot.version>1.5.2.RELEASE</spring-boot.version>
         <postgresql.version>42.1.1</postgresql.version>
         <druid.version>1.1.0</druid.version>
-        <shiro.version>1.2.2</shiro.version>
+        <shiro.version>1.7.1</shiro.version>
         <jedis.version>2.9.0</jedis.version>
         <beetl.version>2.7.12</beetl.version>
         <orika.version>1.5.0</orika.version>
